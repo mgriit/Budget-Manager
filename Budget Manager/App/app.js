@@ -1,81 +1,47 @@
-﻿var app = angular.module("app", ["ui.router", , "ngAnimate", "ngTouch", "ui.bootstrap", "LocalStorageModule"]);
+﻿var app = angular.module('app', ['ui.router', , 'ngAnimate', 'ngTouch', 'ui.bootstrap', 'LocalStorageModule']);
 
-app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider, $locationProvider) {
+app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider', '$locationProvider',function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider, $locationProvider) {
     $urlMatcherFactoryProvider.caseInsensitive(false);
-    $urlRouterProvider.otherwise("/codes");
-
+    $urlRouterProvider.otherwise('/home');
     $stateProvider
-        .state("codes", {
-        url: "/codes",
-        templateUrl: "App/Codes/ngView/root.html",
-        controller: "rootCtrl",
-        abstract: true
-    })
-        .state("codes.home", {
-        url: "?page&items",
-        templateUrl: "App/Codes/ngView/home.html",
-        controller: "homeCtrl",
-        data: {
-            requireLogin: false
-        }
-    })
-    .state("articles.create", {
-        url: "/create",
-        templateUrl: "App/articles/ngView/add.html",
-        controller: "addCtrl",
-        data: {
-             requireLogin: true 
-        }
-    })
-    .state("articles.read", {
-        url: "/:id/read",
-        templateUrl: "App/articles/ngView/read.html",
-        controller: "readCtrl",
-        data: {
-             requireLogin: false 
-        }
-    })
-    .state("articles.popular", {
-        url: "/popular?page&items",
-        templateUrl: "App/articles/ngView/list.html",
-        controller: "listCtrl",
-        data: {
-            requireLogin: false
-        }
-    })
-    .state("articles.search", {
-        url: "/:searchword/search?page&items",
-        templateUrl: 'App/articles/ngView/search.html',
-        controller: 'searchCtrl',
-        data: {
-            requireLogin: false
-        }
-    })
-    .state("articles.category", {
-        url: "/:catid/category?page&items",
-        templateUrl: "App/articles/ngView/list.html",
-        controller: "listCtrl",
-        data: {
-             requireLogin: false 
-        }
-    })
-    .state("articles.tag", {
-        url: "/:tagid/tag?page&items",
-        templateUrl: 'App/articles/ngView/search.html',
-        controller: 'tagCtrl',
-        data: {
-            requireLogin: false
-        }
-    })
-    .state("articles.preview", {
-        url: "/:id/preview",
-        templateUrl: "App/articles/ngView/preview.html",
-        controller: 'previewCtrl',
-        data: {
-            requireLogin: true
-        }
-    });
-});
+        .state('home', {
+            url: '/home',
+            templateUrl: 'App/Home/ngView/home.html',
+            controller: 'homeCtrl'
+        })
+            .state('code', {
+            url: '/code',
+            templateUrl: 'App/Codes/ngView/codeRoot.html',
+            controller: 'codeRootCtrl',
+            abstract: true
+        })
+        .state('code.home', {
+            url: '/:page',
+            templateUrl: 'App/Codes/ngView/codeHome.html',
+            controller: 'codeHomeCtrl',
+            data: {
+                requireLogin: false
+            }
+        })
+        .state('code.add', {
+            url: '/add/',
+            templateUrl: 'App/Codes/ngView/codeEdit.html',
+            controller: 'codeEditCtrl',
+            data: {
+                requireLogin: false
+            }
+        })
+        .state('code.update', {
+            url: '/update/:id',
+            templateUrl: 'App/Codes/ngView/codeEdit.html',
+            controller: 'codeEditCtrl',
+            data: {
+                requireLogin: false
+            }
+        });
+
+   // $locationProvider.html5Mode(true);  
+}]);
 
 
 

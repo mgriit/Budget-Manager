@@ -1,0 +1,36 @@
+﻿<div class="row text-center">
+    <h2>{{}}</h2>
+</div>
+<div class="row">
+
+</div>
+<form name="addCode" role="form">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group" ng-class="{'has-error' : addCode.codenumber.$invalid && (addCode.codenumber.$touched || addCode.$submitted)}">
+                <label for="firstname" class="control-label">Code Number*</label>
+                <input type="text" class="form-control" id="codenumber" name="codenumber" ng-model="code.CodeNumber" ng-required="true" />
+                <span class="help-block" ng-if="addCode.codenumber.$error.required && (addCode.codenumber.$touched || addCode.$submitted)">Code Number is Required.</span>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group" ng-class="{'has-error' : addCode.codename.$invalid && (addCode.codename.$touched || addCode.$submitted)}">
+                <label for="codename" class="control-label">Code Name*</label>
+                <input type="text" class="form-control" id="codename" name="codename" ng-model="code.CodeName" ng-required="true" />
+                <span class="help-block" ng-if="addCode.codename.$error.required && (addCode.codename.$touched || addCode.$submitted)">Code Name is Required.</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="firstname" class="control-label">Serial No</label>
+                <input type="number" class="form-control" id="serialno" name="serialno" ng-model="code.SerialNo" />
+            </div>
+        </div>
+    </div>
+    <a ui-sref="code.home" class="btn btn-info">Back to List</a>
+    <button type="submit" ng-disabled="addCode.$invalid" class="btn btn-default" ng-click="save()">
+        Submit
+    </button>
+</form>
