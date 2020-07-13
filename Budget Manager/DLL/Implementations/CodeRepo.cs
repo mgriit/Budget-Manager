@@ -12,7 +12,8 @@ namespace Budget_Manager.DLL.Implementations
 {
     public class CodeRepo : ICodeRepo
     {
-        public IList<Code> GetAllCode(int page, int itemsPerPage, string search, string sortBy)
+
+        public IList<Code> GetAllCode(int page, int itemsPerPage, string search, string sortBy,bool reverse)
         {
 
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
@@ -22,6 +23,7 @@ namespace Budget_Manager.DLL.Implementations
                 p.Add("@search", search);
                 p.Add("@sortBy", sortBy);
                 p.Add("@itemsPerPage", itemsPerPage);
+                p.Add("@sortOrder", reverse ? "DESC" : "ASC");
                 string sql = "dbo.spCode_GetAll";
                 var codes = cnn.Query<Code>(sql,p, commandType: CommandType.StoredProcedure).ToList();
                 return codes;
@@ -76,6 +78,24 @@ namespace Budget_Manager.DLL.Implementations
                 return false;
             }
             
+        }
+
+        public bool DeleteCode(long codeId)
+        {
+            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            {
+                int rowsAffected;
+                var p = new DynamicParameters();
+                p.Add("@CodeId", codeId);
+                string sql = "dbo.spCode_Delete";
+                rowsAffected = cnn.Execute(sql, p, commandType: CommandType.StoredProcedure);
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+
         }
     }
 }

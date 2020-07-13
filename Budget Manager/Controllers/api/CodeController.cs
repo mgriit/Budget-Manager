@@ -17,10 +17,10 @@ namespace Budget_Manager.Controllers.api
             _repo = repo;
         }
 
-        public IHttpActionResult GetAllCodes(int page, int itemsPerPage,string search,string sortBy)
+        public IHttpActionResult GetAllCodes(int page, int itemsPerPage,string search,string sortBy, bool reverse)
         {
             IList<Code> codes = null;
-            codes = _repo.GetAllCode(page, itemsPerPage, search, sortBy);
+            codes = _repo.GetAllCode(page, itemsPerPage, search, sortBy,reverse);
             if (codes.Count == 0)
             {
                 return NotFound();
@@ -46,7 +46,7 @@ namespace Budget_Manager.Controllers.api
 
         public IHttpActionResult DeleteCodes(Int64 codeId)
         {
-            _repo.GetCode(codeId);
+            _repo.DeleteCode(codeId);
             return Ok();
         }
     }
