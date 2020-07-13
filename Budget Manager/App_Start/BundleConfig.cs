@@ -24,11 +24,14 @@ namespace Budget_Manager
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/font-awesome.css",
+                      "~/Content/rdash.css",
                       "~/Content/site.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                  bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                    "~/Scripts/angular.js",
                    "~/Scripts/angular-ui-router.js",
+                   "~/Scripts/angular-cookies.js",
                    "~/Scripts/angular-animate.js",
                    "~/Scripts/angular-touch.js",
                    "~/Scripts/ui-bootstrap-tpls-2.5.0.min.js",

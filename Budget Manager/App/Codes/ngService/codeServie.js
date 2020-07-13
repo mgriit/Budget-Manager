@@ -1,22 +1,24 @@
 ﻿app.factory('codeService', ['$http', function ($http) {
     var factory = {};
 
-    factory.getAllCodes = function () {
+    factory.getAllCodes = function (obj) {
         return $http({
             method: 'GET',
-            url: '/api/code'
+            url: '/api/code?page=' + obj.page + '&&itemsPerPage=' + obj.itemsPerPage + '&&search=' + obj.search + '&&sortBy=' + obj.sortBy
         });
     };
 
-    factory.saveProduct = function ($scope) {
+    factory.getCode = function (id) {
+        return $http({
+            method: 'GET',
+            url: '/api/code?codeId=' + id
+        });
+    };
+
+    factory.saveCode = function (obj) {
         return $http({
             method: 'POST',
-            data: {
-                'name': $scope.name,
-                'description': $scope.description,
-                'price': $scope.price,
-                'category_id': 1
-            },
+            data: obj,
             url: '/api/code'
         });
     };

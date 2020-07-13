@@ -1,4 +1,4 @@
-﻿var app = angular.module('app', ['ui.router', , 'ngAnimate', 'ngTouch', 'ui.bootstrap', 'LocalStorageModule']);
+﻿var app = angular.module('app', ['ui.router', 'ngCookies','ngAnimate', 'ngTouch', 'ui.bootstrap','LocalStorageModule']);
 
 app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider', '$locationProvider',function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider, $locationProvider) {
     $urlMatcherFactoryProvider.caseInsensitive(false);
@@ -16,7 +16,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
             abstract: true
         })
         .state('code.home', {
-            url: '/:page',
+            url: '/:codename',
             templateUrl: 'App/Codes/ngView/codeHome.html',
             controller: 'codeHomeCtrl',
             data: {

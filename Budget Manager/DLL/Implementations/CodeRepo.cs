@@ -12,15 +12,35 @@ namespace Budget_Manager.DLL.Implementations
 {
     public class CodeRepo : ICodeRepo
     {
-        public IList<Code> GetAllCode()
+        public IList<Code> GetAllCode(int page, int itemsPerPage, string search, string sortBy)
         {
+
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
             {
+                var p = new DynamicParameters();
+                p.Add("@page", page);
+                p.Add("@search", search);
+                p.Add("@sortBy", sortBy);
+                p.Add("@itemsPerPage", itemsPerPage);
                 string sql = "dbo.spCode_GetAll";
-                var codes = cnn.Query<Code>(sql,commandType: CommandType.StoredProcedure).ToList();
+                var codes = cnn.Query<Code>(sql,p, commandType: CommandType.StoredProcedure).ToList();
                 return codes;
             }
      
+        }
+
+        public Code GetCode(Int64 codeId)
+        {
+
+            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            {
+                var p = new DynamicParameters();
+                p.Add("@CodeId", codeId); 
+                string sql = "dbo.spCode_Get";
+                var code = cnn.Query<Code>(sql, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                return code;
+            }
+
         }
 
         public bool SaveCode(Code code)
@@ -28,15 +48,26 @@ namespace Budget_Manager.DLL.Implementations
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
             {
                 int rowsAffected;
+                var p = new DynamicParameters();
+                p.Add("@CodeName", code.CodeName);
+                p.Add("@CodeNumber", code.CodeNumber);
+                p.Add("@SerialNo", code.SerialNo);
+             
+
                 if (code.CodeId == 0)
                 {
+                    p.Add("@DateCreated", DateTime.Now);
+                    p.Add("@Creator", 1233345557);
                     string sql = "dbo.spCode_AddNew";
-                    rowsAffected = cnn.Execute(sql, code);
+                    rowsAffected = cnn.Execute(sql, p, commandType: CommandType.StoredProcedure);
                 }
                 else 
                 {
-                    string sql = "dbo.spCode_AddNew";
-                    rowsAffected = cnn.Execute(sql, code);
+                    p.Add("@CodeId", code.CodeId);
+                    p.Add("@DateModified", DateTime.Now);
+                    p.Add("@Modifier", 1233345557);
+                    string sql = "dbo.spCode_Update";
+                    rowsAffected = cnn.Execute(sql, p, commandType: CommandType.StoredProcedure);
                 }
                 if (rowsAffected > 0)
                 {

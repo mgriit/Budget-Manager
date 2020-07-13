@@ -9,7 +9,8 @@ namespace Budget_Manager.DLL.Implementations
 {
     public interface ICodeRepo
     {
-        IList<Code> GetAllCode();
+        IList<Code> GetAllCode(int page, int itemsPerPage, string search, string sortBy);
         bool SaveCode(Code code);
+        Code GetCode(Int64 codeId);
     }
 }
