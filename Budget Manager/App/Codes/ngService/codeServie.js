@@ -15,6 +15,13 @@
         });
     };
 
+    factory.getCodesShort = function () {
+        return $http({
+            method: 'GET',
+            url: '/api/code/short'
+        });
+    };
+
     factory.saveCode = function (obj) {
         return $http({
             method: 'POST',

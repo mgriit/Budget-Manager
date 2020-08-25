@@ -1,0 +1,101 @@
+﻿<div class="row alerts-container padddingbottom" data-ng-show="alerts.length">
+    <div class="col-xs-12">
+        <div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.msg}}</div>
+    </div>
+</div>
+<form name="addTrans" role="form" novalidate>
+    <rd-widget>
+        <rd-widget-header icon="{{isLoading?'fa-cog fa-spin':'fa-tasks'}}" title="Add Code">
+            <div class="text-right">
+                <a ui-sref="transaction.home" class="btn btn-info">Back to List</a>
+            </div>
+        </rd-widget-header>
+        <rd-widget-body classes="large no-padding">
+
+            <div class="row" style="margin-top:10px">
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{'has-error' : addTrans.code.$invalid && (addTrans.code.$touched || addTrans.$submitted)}">
+                        <label for="firstname" class="control-label">Code*</label>
+                        <div class="input-group">
+                            <ui-select allow-clear ng-model="code.selected" theme="bootstrap" name="code" id="code" ng-required="true">
+                                <ui-select-match placeholder="---Select a Code---">{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices repeat="item in (codesShort | filter: $select.search) track by item.id">
+                                    <span ng-bind-html="item.name | highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                            <span class="input-group-btn">
+                                <button type="button" ng-click="onResetCode()" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </span>
+                        </div>
+                        <span class="help-block" ng-show="addTrans.code.$error.required && (addTrans.code.$touched || addTrans.$submitted)">Code is Required.</span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{'has-error' : addTrans.fiscalyear.$invalid && (addTrans.fiscalyear.$touched || addTrans.$submitted)}">
+                        <label for="fiscalyear" class="control-label">Fiscal Year*</label>
+                        <div class="input-group">
+                            <ui-select allow-clear ng-model="fiscalYear.selected" name="fiscalyear" id="fiscalyear" theme="bootstrap" ng-required="true">
+                                <ui-select-match placeholder="---Select a Fiscal Year---">{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices repeat="item in (fiscalYearShort | filter: $select.search) track by item.id">
+                                    <span ng-bind-html="item.name | highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                            <span class="input-group-btn">
+                                <button type="button" ng-click="onResetFiscalYear()" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </span>
+                        </div>
+                        <span class="help-block" ng-show="addTrans.fiscalyear.$error.required && (addTrans.fiscalyear.$touched || addTrans.$submitted)">Fiscal Year is Required.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group" ng-class="{'has-error' : addTrans.transtype.$invalid && (addTrans.transtype.$touched || addTrans.$submitted)}">
+                        <label for="transtype" class="control-label">Transaction Type*</label>
+                        <div class="input-group">
+                            <ui-select allow-clear ng-model="transType.selected" theme="bootstrap" name="transtype" id="transtype" ng-required="true">
+                                <ui-select-match placeholder="---Select a Trans Type---">{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices repeat="item in (transTypeShort | filter: $select.search) track by item.id">
+                                    <span ng-bind-html="item.name | highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                            <span class="input-group-btn">
+                                <button type="button" ng-click="onResetTransType()" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </span>
+                        </div>
+                        <span class="help-block" ng-show="addTrans.transtype.$error.required && (addTrans.transtype.$touched || addTrans.$submitted)">Code Name is Required.</span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="firstname" class="control-label">Transaction Amount*</label>
+                        <input type="number" class="form-control" id="serialno" name="serialno" ng-model="trans.TransactionAmount" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="firstname" class="control-label">Description</label>
+                        <textarea class="form-control" id="ser" name="note" style="min-height:100px" ng-model="trans.TransactionNote" />
+                    </div>
+                </div>
+            </div>
+
+        </rd-widget-body>
+        <rd-widget-footer>
+            <a ui-sref="transaction.home" class="btn btn-info">Back to List</a>
+            <button type="submit" ng-disabled="isLoading" class="btn btn-primary" ng-click="save(addTrans.$valid)">
+                Submit
+            </button>
+        </rd-widget-footer>
+    </rd-widget>
+</form>
+
+

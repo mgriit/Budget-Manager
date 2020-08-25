@@ -1,4 +1,5 @@
 ﻿using Budget_Manager.Entities;
+using Budget_Manager.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace Budget_Manager.DLL.Implementations
         bool SaveCode(Code code);
         Code GetCode(Int64 codeId);
         bool DeleteCode(long codeId);
+        IList<Item> GetCodeShort();
     }
 }

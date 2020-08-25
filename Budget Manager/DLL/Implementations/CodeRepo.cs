@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using Budget_Manager.Entities;
 using Dapper;
+using Budget_Manager.ViewModels;
 
 namespace Budget_Manager.DLL.Implementations
 {
@@ -96,6 +97,16 @@ namespace Budget_Manager.DLL.Implementations
                 return false;
             }
 
+        }
+
+        public IList<Item> GetCodeShort()
+        {
+            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            {
+                string sql = "[dbo].[spCode_GetAll_Short]";
+                var items = cnn.Query<Item>(sql, commandType: CommandType.StoredProcedure).ToList();
+                return items;
+            }
         }
     }
 }

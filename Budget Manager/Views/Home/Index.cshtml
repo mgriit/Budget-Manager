@@ -11,6 +11,8 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <base href="/">
     @Styles.Render("~/Content/css")
+    <link href="~/Content/Chart.min.css" rel="stylesheet" />
+    <link href="~/Content/select.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body ng-controller="masterCtrl">
@@ -27,7 +29,10 @@
                 </li>
                 <li class="sidebar-title"><span>NAVIGATION</span></li>
                 <li class="sidebar-list">
-                    <a href="#">Dashboard <span class="menu-icon fa fa-tachometer"></span></a>
+                    <a ui-sref="home">Dashboard <span class="menu-icon fa fa-bar-chart"></span></a>
+                </li>
+                <li class="sidebar-list">
+                    <a ui-sref="transaction.home">Transaction <span class="menu-icon fa fa-tachometer"></span></a>
                 </li>
                 <li class="sidebar-list">
                     <a ui-sref="code.home">Code <span class="menu-icon fa fa-table"></span></a>
@@ -35,12 +40,12 @@
             </ul>
             <div class="sidebar-footer">
                 <div class="col-xs-4">
-                    <a href="https://github.com/rdash/rdash-angular" target="_blank">
+                    <a href="#" target="_blank">
                         Github
                     </a>
                 </div>
                 <div class="col-xs-4">
-                    <a href="https://github.com/rdash/rdash-angular/blob/master/README.md" target="_blank">
+                    <a href="#" target="_blank">
                         About
                     </a>
                 </div>
@@ -128,8 +133,9 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/Chart.min.js"></script>
     @Scripts.Render("~/bundles/angular")
-
+    <script src="~/Scripts/select.js"></script>
     <script src="~/App/masterCtrl.js"></script>
     <script src="~/App/Home/ngCtrl/homeCtrl.js"></script>
     <script src="~/App/Shared/ngCtrl/confirmDeleteModalCtrl.js"></script>
@@ -137,11 +143,18 @@
     <script src="~/App/Codes/ngCtrl/codeRootCtrl.js"></script>
     <script src="~/App/Codes/ngCtrl/codeHomeCtrl.js"></script>
     <script src="~/App/Codes/ngCtrl/codeEdit.js"></script>
+    <script src="~/App/Transactions/ngService/transactionService.js"></script>
+    <script src="~/App/TransType/ngService/transTypeService.js"></script>
+    <script src="~/App/FiscalYears/ngService/fiscalYearService.js"></script>
+    <script src="~/App/Transactions/ngCtrl/transactionRootCtrl.js"></script>
+    <script src="~/App/Transactions/ngCtrl/transactionHomeCtrl.js"></script>
+    <script src="~/App/Transactions/ngCtrl/transactionEdit.js"></script>
     <script src="~/App/Derectives/widget.js"></script>
     <script src="~/App/Derectives/widget-header.js"></script>
     <script src="~/App/Derectives/widget-footer.js"></script>
     <script src="~/App/Derectives/widget-body.js"></script>
     <script src="~/App/Derectives/loading.js"></script>
+    <script src="~/App/Derectives/ng-text-truncate.js"></script>
 </body>
 </html>
 

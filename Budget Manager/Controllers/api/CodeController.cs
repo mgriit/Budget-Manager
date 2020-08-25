@@ -1,5 +1,6 @@
 ﻿using Budget_Manager.DLL.Implementations;
 using Budget_Manager.Entities;
+using Budget_Manager.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Budget_Manager.Controllers.api
             _repo = repo;
         }
 
-        public IHttpActionResult GetAllCodes(int page, int itemsPerPage,string search,string sortBy, bool reverse)
+        public IHttpActionResult GetCodes(int page, int itemsPerPage,string search,string sortBy, bool reverse)
         {
             IList<Code> codes = null;
             codes = _repo.GetAllCode(page, itemsPerPage, search, sortBy,reverse);
@@ -27,13 +28,24 @@ namespace Budget_Manager.Controllers.api
             }
             return Ok(codes);
         }
-        public IHttpActionResult GetAllCodes(Int64 codeId)
+        public IHttpActionResult GetCode(Int64 codeId)
         {
             Code codes = null;
             codes = _repo.GetCode(codeId);
             return Ok(codes);
         }
+        [Route("api/code/short")]
+        public IHttpActionResult GetCodeShort()
+        {
+            IList<Item> items = null;
+            items = _repo.GetCodeShort();
 
+            if (items.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(items);
+        }
         public IHttpActionResult PostNewCode(Code code)
         {
             if (!ModelState.IsValid)

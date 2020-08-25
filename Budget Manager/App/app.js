@@ -1,4 +1,4 @@
-﻿var app = angular.module('app', ['ui.router', 'ngCookies','ngAnimate', 'ngTouch', 'ui.bootstrap','LocalStorageModule']);
+﻿var app = angular.module('app', ['ui.router', 'ngCookies', 'ngAnimate', 'ngTouch', 'ui.select', 'ngSanitize', 'ui.bootstrap', 'LocalStorageModule','chart.js']);
 
 app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider', '$locationProvider',function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider, $locationProvider) {
     $urlMatcherFactoryProvider.caseInsensitive(false);
@@ -9,7 +9,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
             templateUrl: 'App/Home/ngView/home.html',
             controller: 'homeCtrl'
         })
-            .state('code', {
+        .state('code', {
             url: '/code',
             templateUrl: 'App/Codes/ngView/codeRoot.html',
             controller: 'codeRootCtrl',
@@ -35,6 +35,36 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
             url: '/update/:id',
             templateUrl: 'App/Codes/ngView/codeEdit.html',
             controller: 'codeEditCtrl',
+            data: {
+                requireLogin: false
+            }
+        })
+        .state('transaction', {
+            url: '/transaction',
+            templateUrl: 'App/Transactions/ngView/transactionRoot.html',
+            controller: 'transactionRootCtrl',
+            abstract: true
+        })
+        .state('transaction.home', {
+            url: '/:transactionname',
+            templateUrl: 'App/Transactions/ngView/transactionHome.html',
+            controller: 'transactionHomeCtrl',
+            data: {
+                requireLogin: false
+            }
+        })
+        .state('transaction.add', {
+            url: '/add/',
+            templateUrl: 'App/Transactions/ngView/transactionEdit.html',
+            controller: 'transactionEditCtrl',
+            data: {
+                requireLogin: false
+            }
+        })
+        .state('transaction.update', {
+            url: '/update/:id',
+            templateUrl: 'App/Transactions/ngView/transactionEdit.html',
+            controller: 'transactionEditCtrl',
             data: {
                 requireLogin: false
             }

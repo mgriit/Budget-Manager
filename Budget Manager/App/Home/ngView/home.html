@@ -1,1 +1,13 @@
-﻿<a ui-sref="code.home" ui-sref-ative="activeState"> Codes</a>
+﻿<div class="row">
+    <div class="col-lg-6">
+        <rd-widget>
+            <rd-widget-header icon="fa-tasks" title="Expense and Balance in {{totalAmount}}">
+            </rd-widget-header>
+            <rd-widget-body classes="large no-padding">
+                <canvas id="pie" class="chart chart-pie"
+                        chart-data="data" chart-labels="labels" chart-options="options" chart-colors="colors">
+                </canvas>
+            </rd-widget-body>
+        </rd-widget>
+    </div>
+</div>

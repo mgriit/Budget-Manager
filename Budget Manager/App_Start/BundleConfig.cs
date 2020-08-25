@@ -34,8 +34,10 @@ namespace Budget_Manager
                    "~/Scripts/angular-cookies.js",
                    "~/Scripts/angular-animate.js",
                    "~/Scripts/angular-touch.js",
+                   "~/Scripts/angular-sanitize.js",
                    "~/Scripts/ui-bootstrap-tpls-2.5.0.min.js",
                    "~/Scripts/angular-local-storage.min.js",
+                   "~/Scripts/angular-chart.min.js",
                    "~/App/app.js"));
         }
     }
