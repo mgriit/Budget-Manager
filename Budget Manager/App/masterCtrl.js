@@ -5,9 +5,14 @@
 app.controller('masterCtrl', ['$scope', '$cookies', MasterCtrl]);
 
 function MasterCtrl($scope, $cookies) {
-
+    $scope.mainTitle = 'Home';
+    $scope.conTitle = 'Budget Manager';
     $scope.pageTitle = 'Dashboard';
     $scope.pageSubTitle = 'Dashboard';
+
+    $scope.changeMainTitle = function (mainTitle) {
+        $scope.mainTitle = mainTitle;
+    };
     $scope.changePageTitle = function (newTitle) {
         $scope.pageTitle = newTitle;
     };

@@ -49,6 +49,10 @@ namespace Budget_Manager.App_Start
                    .As<IDashBoardRepo>()
                    .InstancePerRequest();
 
+            builder.RegisterType<ReportRepo>()
+                   .As<IReportRepo>()
+                   .InstancePerRequest();
+            
             //Set the dependency resolver to be Autofac.  
             Container = builder.Build();
 

@@ -1,4 +1,4 @@
-﻿var app = angular.module('app', ['ui.router', 'ngCookies', 'ngAnimate', 'ngTouch', 'ui.select', 'ngSanitize', 'ui.bootstrap', 'LocalStorageModule','chart.js']);
+﻿var app = angular.module('app', ['ui.router', 'ngCookies', 'ngAnimate', 'ngTouch', 'ui.select', 'ngSanitize', 'ui.bootstrap', 'LocalStorageModule', 'chart.js', 'datatables', 'datatables.buttons']);
 
 app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider', '$locationProvider',function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider, $locationProvider) {
     $urlMatcherFactoryProvider.caseInsensitive(false);
@@ -65,6 +65,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
             url: '/update/:id',
             templateUrl: 'App/Transactions/ngView/transactionEdit.html',
             controller: 'transactionEditCtrl',
+            data: {
+                requireLogin: false
+            }
+        })
+        .state('transReport', {
+            url: '/transreport',
+            templateUrl: 'App/TransReport/ngView/transReport.html',
+            controller: 'transReportCtrl',
             data: {
                 requireLogin: false
             }

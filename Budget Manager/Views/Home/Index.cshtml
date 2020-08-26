@@ -1,21 +1,18 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
     Layout = null;
 }
 
 <!DOCTYPE html>
-<html ng-app="app">
+<html ng-app="app" ng-controller="masterCtrl">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>{{mainTitle}} - {{conTitle}}</title>
     <base href="/">
     @Styles.Render("~/Content/css")
-    <link href="~/Content/Chart.min.css" rel="stylesheet" />
-    <link href="~/Content/select.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body ng-controller="masterCtrl">
+<body>
     <div id="page-wrapper" ng-class="{'open': toggle=='true'?true:false}" ng-cloak>
 
         <!-- Sidebar -->
@@ -36,6 +33,9 @@
                 </li>
                 <li class="sidebar-list">
                     <a ui-sref="code.home">Code <span class="menu-icon fa fa-table"></span></a>
+                </li>
+                <li class="sidebar-list">
+                    <a ui-sref="transReport">Trans. Report <span class="menu-icon fa fa-table"></span></a>
                 </li>
             </ul>
             <div class="sidebar-footer">
@@ -132,10 +132,8 @@
     </div><!-- End Page Wrapper -->
 
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    <script src="~/Scripts/Chart.min.js"></script>
     @Scripts.Render("~/bundles/angular")
-    <script src="~/Scripts/select.js"></script>
+ 
     <script src="~/App/masterCtrl.js"></script>
     <script src="~/App/Home/ngCtrl/homeCtrl.js"></script>
     <script src="~/App/Shared/ngCtrl/confirmDeleteModalCtrl.js"></script>
@@ -149,6 +147,7 @@
     <script src="~/App/Transactions/ngCtrl/transactionRootCtrl.js"></script>
     <script src="~/App/Transactions/ngCtrl/transactionHomeCtrl.js"></script>
     <script src="~/App/Transactions/ngCtrl/transactionEdit.js"></script>
+    <script src="~/App/TransReport/ngCtrl/transReportCtrl.js"></script>
     <script src="~/App/Derectives/widget.js"></script>
     <script src="~/App/Derectives/widget-header.js"></script>
     <script src="~/App/Derectives/widget-footer.js"></script>
