@@ -101,23 +101,23 @@
                                 <th class="text-center" ng-click="sort('CodeName')">
                                     Code-Name <i ng-if="pageData.sortBy=='CodeName'" ng-class="pageData.reverse?'fa fa-angle-up':'fa fa-angle-down'" aria-hidden="true"></i>
                                 </th>
-                                <th class="text-center" ng-click="sort('SerialNo')">
-                                    Fiscal-Year <i ng-if="pageData.sortBy=='SerialNo'" ng-class="pageData.reverse?'fa fa-angle-up':'fa fa-angle-down'" aria-hidden="true"></i>
+                                <th class="text-center" ng-click="sort('FiscalYearName')">
+                                    Fiscal-Year <i ng-if="pageData.sortBy=='FiscalYearName'" ng-class="pageData.reverse?'fa fa-angle-up':'fa fa-angle-down'" aria-hidden="true"></i>
                                 </th>
-                                <th class="text-center" ng-click="sort('CodeNumber')">
-                                    Date <i ng-if="pageData.sortBy=='CodeNumber'" ng-class="pageData.reverse?'fa fa-angle-up':'fa fa-angle-down'" aria-hidden="true"></i>
+                                <th class="text-center" ng-click="sort('TransactionDate')">
+                                    Date <i ng-if="pageData.sortBy=='TransactionDate'" ng-class="pageData.reverse?'fa fa-angle-up':'fa fa-angle-down'" aria-hidden="true"></i>
                                 </th>
-                                <th class="text-center" ng-click="sort('CodeName')">
-                                    Status <i ng-if="pageData.sortBy=='CodeName'" ng-class="pageData.reverse?'fa fa-angle-up':'fa fa-angle-down'" aria-hidden="true"></i>
+                                <th class="text-center" ng-click="sort('[Status]')">
+                                    Status <i ng-if="pageData.sortBy=='[Status]'" ng-class="pageData.reverse?'fa fa-angle-up':'fa fa-angle-down'" aria-hidden="true"></i>
                                 </th>
-                                <th class="text-center" ng-click="sort('SerialNo')">
-                                    Type <i ng-if="pageData.sortBy=='SerialNo'" ng-class="pageData.reverse?'fa fa-angle-up':'fa fa-angle-down'" aria-hidden="true"></i>
+                                <th class="text-center" ng-click="sort('[Type]')">
+                                    Type <i ng-if="pageData.sortBy=='[Type]'" ng-class="pageData.reverse?'fa fa-angle-up':'fa fa-angle-down'" aria-hidden="true"></i>
                                 </th>
-                                <th class="text-center" ng-click="sort('CodeName')">
-                                    Amount <i ng-if="pageData.sortBy=='CodeName'" ng-class="pageData.reverse?'fa fa-angle-up':'fa fa-angle-down'" aria-hidden="true"></i>
+                                <th class="text-center" ng-click="sort('TransactionAmount')">
+                                    Amount <i ng-if="pageData.sortBy=='TransactionAmount'" ng-class="pageData.reverse?'fa fa-angle-up':'fa fa-angle-down'" aria-hidden="true"></i>
                                 </th>
-                                <th class="text-center" ng-click="sort('SerialNo')">
-                                    Note <i ng-if="pageData.sortBy=='SerialNo'" ng-class="pageData.reverse?'fa fa-angle-up':'fa fa-angle-down'" aria-hidden="true"></i>
+                                <th class="text-center">
+                                    Note
                                 </th>
  
                                 <th class="text-center" colspan="2">Actions</th>
@@ -138,7 +138,7 @@
                                     <a ui-sref="transaction.update({id:item.TransactionId})" class="glyphicon glyphicon-edit"></a>
                                 </td>
                                 <td>
-                                    <a ng-click="delete(item.CodeId,item.CodeName)" onclick="return false;" href="#" class="glyphicon glyphicon-trash"></a>
+                                    <a ng-click="delete(item.TransactionId,item.TransactionAmount)" onclick="return false;" href="#" class="glyphicon glyphicon-trash"></a>
                                 </td>
                             </tr>
                         </tbody>

@@ -46,7 +46,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
             abstract: true
         })
         .state('transaction.home', {
-            url: '/:transactionname',
+            url: '/:transactionId',
             templateUrl: 'App/Transactions/ngView/transactionHome.html',
             controller: 'transactionHomeCtrl',
             data: {

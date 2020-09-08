@@ -8,7 +8,6 @@
         TransactionAmount: '',
         TransactionNote: ''
     }
-    $scope.fiscalYear.selected = {id: 1, name: '2019 - 2020'};
 
     $scope.id = $stateParams.id;
     if ($scope.id) {
@@ -32,9 +31,9 @@
         $scope.changePageSubTitle('Transaction / Add')
     }
 
-    $scope.save = function (isValid) {
+    $scope.save = function (form) {
         $scope.isLoading = true;
-        if (!isValid) {
+        if (form.$invalid) {
             $scope.isLoading = false;
             return;
         }
@@ -44,7 +43,10 @@
 
         transactionService.save($scope.trans).then(function successCallback(response) {
             $scope.isLoading = false;
-            $scope.cleardata();
+            if ($scope.id)
+                $state.go('transaction.home', { transactionId: $scope.trans.TransactionId });
+
+            $scope.cleardata(form);
             $scope.addAlert({
                 type: 'success',
                 msg: 'Code has been added successfuly'
@@ -58,15 +60,33 @@
         });
     };
 
-
+    $scope.cleardata = function (f) {
+        $scope.trans.TransactionAmount = '';
+        $scope.trans.TransactionNote = '';
+        $scope.onResetCode();
+        $scope.onResetFiscalYear();
+        $scope.onResetTransType();
+        f.$setUntouched();
+    }
 
     $scope.onResetCode = function () {
         $scope.code.selected = undefined;
     }
     $scope.onResetFiscalYear = function () {
-        $scope.code.selected = undefined;
+        $scope.fiscalYear.selected = undefined;
     }
     $scope.onResetTransType = function () {
-        $scope.code.selected = undefined;
+        $scope.transType.selected = undefined;
     }
+
+    //Alert Builer
+    $scope.alerts = [];
+
+    $scope.addAlert = function (alert) {
+        $scope.alerts.push(alert);
+    };
+
+    $scope.closeAlert = function (index) {
+        $scope.alerts.splice(index, 1);
+    };
 }]);

@@ -75,7 +75,7 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="firstname" class="control-label">Transaction Amount*</label>
-                        <input type="number" class="form-control" id="serialno" name="serialno" ng-model="trans.TransactionAmount" />
+                        <input type="number" class="form-control" id="transsactionAmount" name="transsactionAmount" ng-model="trans.TransactionAmount" />
                     </div>
                 </div>
             </div>
@@ -83,7 +83,7 @@
                 <div class="col-sm-12">
                     <div class="form-group">
                         <label for="firstname" class="control-label">Description</label>
-                        <textarea class="form-control" id="ser" name="note" style="min-height:100px" ng-model="trans.TransactionNote" />
+                        <textarea class="form-control" id="transactionNote" name="transactionNote" style="min-height:100px" ng-model="trans.TransactionNote" />
                     </div>
                 </div>
             </div>
@@ -91,7 +91,7 @@
         </rd-widget-body>
         <rd-widget-footer>
             <a ui-sref="transaction.home" class="btn btn-info">Back to List</a>
-            <button type="submit" ng-disabled="isLoading" class="btn btn-primary" ng-click="save(addTrans.$valid)">
+            <button type="submit" ng-disabled="isLoading" class="btn btn-primary" ng-click="save(addTrans)">
                 Submit
             </button>
         </rd-widget-footer>

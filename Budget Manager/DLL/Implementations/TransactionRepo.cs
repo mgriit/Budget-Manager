@@ -16,7 +16,19 @@ namespace Budget_Manager.DLL.Implementations
     {
         public bool DeleteTransaction(long transactionId)
         {
-            throw new NotImplementedException();
+            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            {
+                int rowsAffected;
+                var p = new DynamicParameters();
+                p.Add("@TransactionId", transactionId);
+                string sql = "dbo.spTransaction_Delete";
+                rowsAffected = cnn.Execute(sql, p, commandType: CommandType.StoredProcedure);
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
         }
 
         public IList<TransactionFull> GetAllTransaction(int page, int itemsPerPage, string search, string sortBy, bool reverse, Int64 codeID, Int64 fiscalYearId, int transactionTypeId)

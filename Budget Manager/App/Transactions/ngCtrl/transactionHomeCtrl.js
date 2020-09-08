@@ -49,12 +49,14 @@
     }
 
     $scope.selectPage = function () {
-        loadCode();
+        loadData();
     }
+
     $scope.search = function () {
         $scope.pageData.page = 1;
-        loadCode();
+        loadData();
     }
+
     $scope.sort = function (sortBy) {
         $scope.pageData.page = 1;
 
@@ -65,14 +67,15 @@
             $scope.pageData.reverse = false;
         }
 
-        loadCode();
+        loadData();
     }
+
     $scope.delete = function (id, name) {
         $scope.isConfirmed().result.then(function (result) {
             $scope.isLoading = true;
-            codeService.deleteCode(id).then(function successCallback(response) {
+            transactionService.delete(id).then(function successCallback(response) {
                 $scope.isLoading = false;
-                loadCode();
+                loadData();
                 $scope.addAlert({
                     type: 'success',
                     msg: name + ' has been deleted successfully!'
@@ -91,11 +94,14 @@
 
     $scope.reset = function () {
         $scope.pageData.page = 1;
-        $scope.pageData.itemsPerPage = 15;
         $scope.pageData.search = '';
-        $scope.pageData.sortBy = 'SerialNo';
-        $scope.alerts = [];
-        loadCode();
+        $scope.pageData.sortBy = 'TransactionId';
+        $scope.pageData.reverse = true;
+        $scope.pageData.alerts = [];
+        $scope.transType.selected = undefined;
+        $scope.fiscalYear.selected = undefined;
+        $scope.code.selected = undefined;
+        loadData();
     }
     //Alert Builer
     $scope.alerts = [];
@@ -107,12 +113,14 @@
     $scope.closeAlert = function (index) {
         $scope.alerts.splice(index, 1);
     };
-    if ($stateParams.codename) {
+
+    if ($stateParams.transactionId) {
         $scope.addAlert({
             type: 'success',
-            msg: $stateParams.codename + ' has been updated successfully!'
+            msg:'Transaction has been updated successfully!'
         });
     }
+
     //Confirm Delete Modal
     $scope.isConfirmed = function () {
         var modalInstance = $uibModal.open({
