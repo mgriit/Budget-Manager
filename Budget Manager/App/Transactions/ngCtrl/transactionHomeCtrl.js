@@ -45,7 +45,7 @@
 
 
     $scope.addNew = function () {
-        $state.go('transaction.add');
+        $state.go('main.transaction.add');
     }
 
     $scope.selectPage = function () {
@@ -78,13 +78,13 @@
                 loadData();
                 $scope.addAlert({
                     type: 'success',
-                    msg: name + ' has been deleted successfully!'
+                    msg: 'Transaction has been deleted successfully!'
                 });
             }, function errorCallback(response) {
                 $scope.isLoading = false;
                 $scope.addAlert({
                     type: 'warning',
-                    msg: name + ' can not be deleted!'
+                    msg: 'Transaction can not be deleted!'
                 });
             });
         }, function () {

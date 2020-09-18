@@ -60,7 +60,7 @@
                                 <td>{{ item.SerialNo }}</td>
                                 <td>{{ item.DateCreated | date}}</td>
                                 <td>
-                                    <a ui-sref="code.update({id:item.CodeId})" class="glyphicon glyphicon-edit"></a>
+                                    <a ui-sref="main.code.update({id:item.CodeId})" class="glyphicon glyphicon-edit"></a>
                                 </td>
                                 <td>
                                     <a ng-click="delete(item.CodeId,item.CodeName)" onclick="return false;" href="#" class="glyphicon glyphicon-trash"></a>

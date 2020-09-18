@@ -9,7 +9,7 @@
             <rd-widget>
                 <rd-widget-header icon="{{isLoading?'fa-cog fa-spin':'fa-tasks'}}" title="Add Code">
                     <div class="text-right">
-                        <a ui-sref="code.home" class="btn btn-info">Back to List</a>
+                        <a ui-sref="main.code.home" class="btn btn-info">Back to List</a>
                     </div>
                 </rd-widget-header>
                 <rd-widget-body classes="large no-padding">
@@ -43,7 +43,7 @@
 
                 </rd-widget-body>
                 <rd-widget-footer>
-                    <a ui-sref="code.home" class="btn btn-info">Back to List</a>
+                    <a ui-sref="main.code.home" class="btn btn-info">Back to List</a>
                     <button type="submit" ng-disabled="isLoading" class="btn btn-primary" ng-click="save(addCode.$valid)">
                         Submit
                     </button>

@@ -80,7 +80,7 @@ namespace Budget_Manager.DLL.Implementations
                 {
                     p.Add("@TransactionDate", DateTime.Now);
                     p.Add("@DateCreated", DateTime.Now);
-                    p.Add("@Creator", 1233345557);
+                    p.Add("@Creator", transaction.Creator);
                     string sql = "dbo.spTransaction_AddNew";
                     rowsAffected = cnn.Execute(sql, p, commandType: CommandType.StoredProcedure);
                 }
@@ -88,7 +88,7 @@ namespace Budget_Manager.DLL.Implementations
                 {
                     p.Add("@TransactionId", transaction.TransactionId);
                     p.Add("@DateModified", DateTime.Now);
-                    p.Add("@Modifier", 1233345557);
+                    p.Add("@Modifier", transaction.Creator);
                     string sql = "dbo.spTransaction_Update";
                     rowsAffected = cnn.Execute(sql, p, commandType: CommandType.StoredProcedure);
                 }

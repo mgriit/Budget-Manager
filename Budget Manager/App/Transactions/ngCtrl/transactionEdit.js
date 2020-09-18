@@ -44,7 +44,7 @@
         transactionService.save($scope.trans).then(function successCallback(response) {
             $scope.isLoading = false;
             if ($scope.id)
-                $state.go('transaction.home', { transactionId: $scope.trans.TransactionId });
+                $state.go('main.transaction.home', { transactionId: $scope.trans.TransactionId });
 
             $scope.cleardata(form);
             $scope.addAlert({

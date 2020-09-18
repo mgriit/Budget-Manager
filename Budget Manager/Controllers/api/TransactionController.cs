@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Web.Http;
 
 namespace Budget_Manager.Controllers
@@ -38,6 +39,13 @@ namespace Budget_Manager.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest("Invalid data.");
+
+            var identity = (ClaimsIdentity)User.Identity;
+            String userId = identity.Claims
+             .Where(c => c.Type == "UserId")
+             .Select(c => c.Value).FirstOrDefault();
+
+            transaction.Creator = Convert.ToInt64(userId);
 
             _repo.SaveTransaction(transaction);
 

@@ -135,7 +135,7 @@
                                 <td ng-text-truncate="item.TransactionNote" ng-tt-chars-threshold="30" style="max-width:300px">
                                 </td>
                                 <td>
-                                    <a ui-sref="transaction.update({id:item.TransactionId})" class="glyphicon glyphicon-edit"></a>
+                                    <a ui-sref="main.transaction.update({id:item.TransactionId})" class="glyphicon glyphicon-edit"></a>
                                 </td>
                                 <td>
                                     <a ng-click="delete(item.TransactionId,item.TransactionAmount)" onclick="return false;" href="#" class="glyphicon glyphicon-trash"></a>

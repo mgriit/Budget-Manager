@@ -60,7 +60,7 @@ namespace Budget_Manager.DLL.Implementations
                 if (code.CodeId == 0)
                 {
                     p.Add("@DateCreated", DateTime.Now);
-                    p.Add("@Creator", 1233345557);
+                    p.Add("@Creator", code.Creator);
                     string sql = "dbo.spCode_AddNew";
                     rowsAffected = cnn.Execute(sql, p, commandType: CommandType.StoredProcedure);
                 }
@@ -68,7 +68,7 @@ namespace Budget_Manager.DLL.Implementations
                 {
                     p.Add("@CodeId", code.CodeId);
                     p.Add("@DateModified", DateTime.Now);
-                    p.Add("@Modifier", 1233345557);
+                    p.Add("@Modifier", code.Creator);
                     string sql = "dbo.spCode_Update";
                     rowsAffected = cnn.Execute(sql, p, commandType: CommandType.StoredProcedure);
                 }

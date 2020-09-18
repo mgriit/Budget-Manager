@@ -13,127 +13,13 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div id="page-wrapper" ng-class="{'open': toggle=='true'?true:false}" ng-cloak>
-
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar">
-                <li class="sidebar-main">
-                    <a ng-click="toggleSidebar()">
-                        Dashboard
-                        <span class="menu-icon glyphicon glyphicon-transfer"></span>
-                    </a>
-                </li>
-                <li class="sidebar-title"><span>NAVIGATION</span></li>
-                <li class="sidebar-list">
-                    <a ui-sref="home">Dashboard <span class="menu-icon fa fa-bar-chart"></span></a>
-                </li>
-                <li class="sidebar-list">
-                    <a ui-sref="transaction.home">Transaction <span class="menu-icon fa fa-tachometer"></span></a>
-                </li>
-                <li class="sidebar-list">
-                    <a ui-sref="code.home">Code <span class="menu-icon fa fa-table"></span></a>
-                </li>
-                <li class="sidebar-list">
-                    <a ui-sref="transReport">Trans. Report <span class="menu-icon fa fa-table"></span></a>
-                </li>
-            </ul>
-            <div class="sidebar-footer">
-                <div class="col-xs-4">
-                    <a href="#" target="_blank">
-                        Github
-                    </a>
-                </div>
-                <div class="col-xs-4">
-                    <a href="#" target="_blank">
-                        About
-                    </a>
-                </div>
-                <div class="col-xs-4">
-                    <a href="#">
-                        Support
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!-- End Sidebar -->
-
-        <div id="content-wrapper">
-            <div class="page-content">
-
-                <!-- Header Bar -->
-                <div class="row header">
-                    <div class="col-xs-12">
-                        <div class="user pull-right">
-                            <div class="item dropdown" uib-dropdown>
-                                <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
-                                    <img src="img/avatar.jpg">
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li class="dropdown-header">
-                                        Joe Bloggs
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li class="link">
-                                        <a href="#">
-                                            Profile
-                                        </a>
-                                    </li>
-                                    <li class="link">
-                                        <a href="#">
-                                            Menu Item
-                                        </a>
-                                    </li>
-                                    <li class="link">
-                                        <a href="#">
-                                            Menu Item
-                                        </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li class="link">
-                                        <a href="#">
-                                            Logout
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="item dropdown" uib-dropdown>
-                                <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
-                                    <i class="fa fa-bell-o"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li class="dropdown-header">
-                                        Notifications
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="#">Server Down!</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="meta">
-                            <div class="page">
-                                {{pageTitle}}
-                            </div>
-                            <div class="breadcrumb-links">
-                                Home / {{pageSubTitle}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Header Bar -->
-                <!-- Main Content -->
-
-                <div ui-view></div>
-
-            </div><!-- End Page Content -->
-        </div><!-- End Content Wrapper -->
-    </div><!-- End Page Wrapper -->
+    <div ui-view dw-loading="main" dw-loading-options="{text: 'Processing...'}"></div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/angular")
- 
+    <script src="~/App/Shared/ngService/accountService.js"></script>
+    <script src="~/App/Main/ngCtrl/mainCtrl.js"></script>
+    <script src="~/App/Login/ngCtrl/loginCtrl.js"></script>
     <script src="~/App/masterCtrl.js"></script>
     <script src="~/App/Home/ngCtrl/homeCtrl.js"></script>
     <script src="~/App/Shared/ngCtrl/confirmDeleteModalCtrl.js"></script>
@@ -148,11 +34,12 @@
     <script src="~/App/Transactions/ngCtrl/transactionHomeCtrl.js"></script>
     <script src="~/App/Transactions/ngCtrl/transactionEdit.js"></script>
     <script src="~/App/TransReport/ngCtrl/transReportCtrl.js"></script>
+    <script src="~/App/CodeTransfer/ngService/codeTransferService.js"></script>
+    <script src="~/App/CodeTransfer/ngCtrl/codeTransferCtrl.js"></script>
     <script src="~/App/Derectives/widget.js"></script>
     <script src="~/App/Derectives/widget-header.js"></script>
     <script src="~/App/Derectives/widget-footer.js"></script>
     <script src="~/App/Derectives/widget-body.js"></script>
-    <script src="~/App/Derectives/loading.js"></script>
     <script src="~/App/Derectives/ng-text-truncate.js"></script>
 </body>
 </html>

@@ -1,17 +1,16 @@
-﻿app.controller('codeHomeCtrl', ['$scope', '$stateParams', '$state', '$uibModal', 'codeService', function ($scope, $stateParams, $state, $uibModal, codeService) {
+﻿app.controller('userHomeCtrl', ['$scope', '$stateParams', '$state', '$uibModal', 'codeService', function ($scope, $stateParams, $state, $uibModal, codeService) {
     $scope.changePageTitle('Code');
     $scope.changePageSubTitle('Code / List');
     $scope.pageData = {
-        codes:[],
+        users:[],
         page: 1 ,
         itemsPerPage: 15,
         search: '',
-        sortBy: 'SerialNo',
         reverse: false,
         totalItems: 0
     };
 
-    var loadCode = function () {
+    var loadData = function () {
 
         $scope.mainLoaderStart();
 
@@ -38,7 +37,7 @@
         });
     }
 
-    loadCode();
+    loadData();
 
     $scope.addNew = function () {
         $state.go('main.code.add');

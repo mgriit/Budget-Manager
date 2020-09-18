@@ -28,7 +28,6 @@ namespace Budget_Manager.App_Start
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
 
-
             builder.RegisterType<CodeRepo>()
                    .As<ICodeRepo>()
                    .InstancePerRequest();
@@ -51,6 +50,15 @@ namespace Budget_Manager.App_Start
 
             builder.RegisterType<ReportRepo>()
                    .As<IReportRepo>()
+                   .InstancePerRequest();
+
+
+            builder.RegisterType<UserRepo>()
+                   .As<IUserRepo>()
+                   .InstancePerRequest();
+
+            builder.RegisterType<CodeTransferRepo>()
+                   .As<ICodeTransferRepo>()
                    .InstancePerRequest();
             
             //Set the dependency resolver to be Autofac.  

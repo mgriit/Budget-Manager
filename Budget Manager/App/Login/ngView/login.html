@@ -1,0 +1,18 @@
+﻿<div class="container login-page-overley">
+    <div class="row" dw-loading="login" dw-loading-options="{text: 'Processing...'}">
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+            <div class="account-wall">
+                <h2 class="text-center" style="margin-top:0px"><span style="color:darkblue">RCC </span><span style="color: rgb(40, 96, 144)">Budget Manager</span></h2>
+                <img class="profile-img" src="../../../img/lock.png" alt="">
+                <form class="form-signin" name="loginForm" role="form" novalidate>
+                    <input type="text" class="form-control" name="username" id="username" placeholder="Username" ng-model="account.username" ng-required="true" />
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Password" ng-model="account.password" ng-required="true" />
+                    <h6>{{message}}</h6>
+                    <button type="submit" class="btn btn-lg btn-primary btn-block" ng-click="login()">
+                        Sign in
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

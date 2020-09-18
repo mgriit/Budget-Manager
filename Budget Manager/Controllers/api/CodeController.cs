@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
+using System.Threading;
 using System.Web.Http;
 
 namespace Budget_Manager.Controllers.api
@@ -50,6 +52,13 @@ namespace Budget_Manager.Controllers.api
         {
             if (!ModelState.IsValid)
                 return BadRequest("Invalid data.");
+
+            var identity = (ClaimsIdentity)User.Identity;
+            String userId = identity.Claims
+             .Where(c => c.Type == "UserId")
+             .Select(c => c.Value).FirstOrDefault();
+
+            code.Creator = Convert.ToInt64(userId);
 
             _repo.SaveCode(code);
 

@@ -2,9 +2,9 @@
  * Master Controller
  */
 
-app.controller('masterCtrl', ['$scope', '$cookies', MasterCtrl]);
+app.controller('masterCtrl', ['$scope','$loading' ,MasterCtrl]);
 
-function MasterCtrl($scope, $cookies) {
+function MasterCtrl($scope, $loading) {
     $scope.mainTitle = 'Home';
     $scope.conTitle = 'Budget Manager';
     $scope.pageTitle = 'Dashboard';
@@ -19,40 +19,12 @@ function MasterCtrl($scope, $cookies) {
     $scope.changePageSubTitle = function (newSubTitle) {
         $scope.pageSubTitle = newSubTitle;
     };
-    /**
-     * Sidebar Toggle & Cookie Control
-     */
-    var mobileView = 992;
 
-    $scope.getWidth = function () {
-        return window.innerWidth;
+    $scope.mainLoaderStart = function () {
+        $loading.start('main');
     };
 
-    $scope.$watch($scope.getWidth, function (newValue, oldValue) {
-        if (newValue >= mobileView) {
-            if (angular.isDefined($cookies.get('toggle'))) {
-                $scope.toggle = $cookies.get('toggle');
-            } else {
-                $scope.toggle = 'true';
-            }
-        } else {
-            $scope.toggle = 'false';
-        }
-
-    });
-
-    $scope.toggleSidebar = function () {
-        if ($scope.toggle=='true') {
-            $scope.toggle = 'false';
-        }
-        else {
-            $scope.toggle = 'true';
-        }
-        $cookies.put('toggle', $scope.toggle);
-
-    };
-
-    window.onresize = function () {
-        $scope.$apply();
+    $scope.mainLoaderStop = function () {
+        $loading.finish('main');
     };
 }

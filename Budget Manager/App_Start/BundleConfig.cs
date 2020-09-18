@@ -19,7 +19,7 @@ namespace Budget_Manager
                     "~/Content/buttons.dataTables.min.css",
                     "~/Content/Chart.min.css",
                     "~/Content/rdash.css",
-                    "~/Content/select.css",
+                    "~/Content/select.css",              
                     "~/Content/site.css"));
 
 
@@ -50,6 +50,8 @@ namespace Budget_Manager
                    "~/Scripts/angular-datatables.min.js",
                    "~/Scripts/angular-datatables.buttons.min.js",
                    "~/Scripts/select.js",
+                   "~/Scripts/spin.min.js",
+                   "~/Scripts/angular-loading.js",
                    "~/App/app.js"
                    ));
         }
