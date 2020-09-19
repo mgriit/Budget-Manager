@@ -14,9 +14,9 @@
         $scope.trans.TransactionId = $scope.id;
         $scope.changePageTitle('Transaction');
         $scope.changePageSubTitle('Transaction / Update');
-        $scope.isLoading = true;
+        $scope.mainLoaderStart();
         transactionService.get($scope.id).then(function successCallback(response) {
-            $scope.isLoading = false;
+            $scope.mainLoaderStop();
             $scope.trans.TransactionId = response.data.TransactionId;
             $scope.code.selected = { id: response.data.CodeId, name: response.data.CodeName };
             $scope.fiscalYear.selected = { id: response.data.FiscalYearId, name: response.data.FiscalYearName };
@@ -24,6 +24,7 @@
             $scope.trans.TransactionAmount = response.data.TransactionAmount;
             $scope.trans.TransactionNote = response.data.TransactionNote;
         }, function errorCallback(response) {
+                $scope.mainLoaderStop();
         });
     }
     else {
@@ -32,17 +33,17 @@
     }
 
     $scope.save = function (form) {
-        $scope.isLoading = true;
         if (form.$invalid) {
-            $scope.isLoading = false;
             return;
         }
         $scope.trans.CodeId = $scope.code.selected.id;
         $scope.trans.FiscalYearId = $scope.fiscalYear.selected.id;
         $scope.trans.TransactionTypeId = $scope.transType.selected.id;
 
+        $scope.mainLoaderStart();
+
         transactionService.save($scope.trans).then(function successCallback(response) {
-            $scope.isLoading = false;
+            $scope.mainLoaderStop();
             if ($scope.id)
                 $state.go('main.transaction.home', { transactionId: $scope.trans.TransactionId });
 
@@ -52,7 +53,7 @@
                 msg: 'Code has been added successfuly'
             });
         }, function errorCallback(response) {
-            $scope.isLoading = false;
+            $scope.mainLoaderStop();
             $scope.addAlert({
                 type: 'danger',
                 msg: 'Code has not been added! Try again'
@@ -67,6 +68,7 @@
         $scope.onResetFiscalYear();
         $scope.onResetTransType();
         f.$setUntouched();
+        f.$setPristine();
     }
 
     $scope.onResetCode = function () {

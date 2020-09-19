@@ -11,5 +11,8 @@ namespace Budget_Manager.DLL.Interfaces
     {
         User FindUser(string userName, string password);
         User FindUser(Int64 userId);
+        IList<User> GetAll(int page, int itemsPerPage, string search, string sortBy, bool reverse);
+        bool Delete(long userId);
+        int Save(User user);
     }
 }

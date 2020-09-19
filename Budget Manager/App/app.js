@@ -2,7 +2,7 @@
 
 app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider, $locationProvider) {
     $urlMatcherFactoryProvider.caseInsensitive(false);
-    $urlRouterProvider.otherwise('/codetransfer');
+    $urlRouterProvider.otherwise('/login');
     $stateProvider
         .state('login', {
             url: '/login',
@@ -15,10 +15,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
         .state('main', {
             templateUrl: 'App/Main/ngView/main.html',
             controller: 'mainCtrl',
-            abstract: true,
-            data: {
-                requireLogin: true
-            }
+            abstract: true
         })
         .state('main.dashboard', {
             url: '/dashboard',
@@ -32,10 +29,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
             url: '/code',
             templateUrl: 'App/Codes/ngView/codeRoot.html',
             controller: 'codeRootCtrl',
-            abstract: true,
-            data: {
-                requireLogin: true
-            }
+            abstract: true
         })
         .state('main.code.home', {
             url: '/:codename',
@@ -65,10 +59,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
             url: '/transaction',
             templateUrl: 'App/Transactions/ngView/transactionRoot.html',
             controller: 'transactionRootCtrl',
-            abstract: true,
-            data: {
-                requireLogin: true
-            }
+            abstract: true
         })
         .state('main.transaction.home', {
             url: '/:transactionId',
@@ -95,34 +86,31 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
             }
         })
         .state('main.user', {
-            url: '/code',
-            templateUrl: 'App/Codes/ngView/codeRoot.html',
-            controller: 'codeRootCtrl',
-            abstract: true,
-            data: {
-                requireLogin: true
-            }
+            url: '/user',
+            templateUrl: 'App/Users/ngView/userRoot.html',
+            controller: 'userRootCtrl',
+            abstract: true
         })
         .state('main.user.home', {
-            url: '/:codename',
-            templateUrl: 'App/Codes/ngView/codeHome.html',
-            controller: 'codeHomeCtrl',
+            url: '/:name',
+            templateUrl: 'App/Users/ngView/userHome.html',
+            controller: 'userHomeCtrl',
             data: {
                 requireLogin: true
             }
         })
         .state('main.user.add', {
             url: '/add/',
-            templateUrl: 'App/Codes/ngView/codeEdit.html',
-            controller: 'codeEditCtrl',
+            templateUrl: 'App/Users/ngView/userEdit.html',
+            controller: 'userEditCtrl',
             data: {
                 requireLogin: true
             }
         })
         .state('main.user.update', {
             url: '/update/:id',
-            templateUrl: 'App/Codes/ngView/codeEdit.html',
-            controller: 'codeEditCtrl',
+            templateUrl: 'App/Users/ngView/userEdit.html',
+            controller: 'userEditCtrl',
             data: {
                 requireLogin: true
             }
@@ -140,7 +128,15 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
             templateUrl: 'App/CodeTransfer/ngView/codeTransfer.html',
             controller: 'codeTransferCtrl',
             data: {
-                requireLogin: false
+                requireLogin: true
+            }
+        })
+        .state('main.about', {
+            url: '/about',
+            templateUrl: 'App/About/ngView/about.html',
+            controller: 'aboutCtrl',
+            data: {
+                requireLogin: true
             }
         });
 

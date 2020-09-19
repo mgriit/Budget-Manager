@@ -1,11 +1,12 @@
-﻿app.controller('userHomeCtrl', ['$scope', '$stateParams', '$state', '$uibModal', 'codeService', function ($scope, $stateParams, $state, $uibModal, codeService) {
-    $scope.changePageTitle('Code');
-    $scope.changePageSubTitle('Code / List');
+﻿app.controller('userHomeCtrl', ['$scope', '$stateParams', '$state', '$uibModal', 'userManagementService', function ($scope, $stateParams, $state, $uibModal, userManagementService) {
+    $scope.changePageTitle('User');
+    $scope.changePageSubTitle('User / List');
     $scope.pageData = {
         users:[],
         page: 1 ,
         itemsPerPage: 15,
         search: '',
+        sortBy: '[UserFullName]',
         reverse: false,
         totalItems: 0
     };
@@ -22,12 +23,12 @@
             reverse: $scope.pageData.reverse
         };
 
-        $scope.pageData.codes = [];
+        $scope.pageData.users = [];
 
-        codeService.getAllCodes(params).then(function successCallback(response) {
+        userManagementService.getAllUsers(params).then(function successCallback(response) {
             $scope.mainLoaderStop();
-            $scope.pageData.codes = response.data;
-            $scope.pageData.totalItems = $scope.pageData.codes[0].TotalRow;
+            $scope.pageData.users = response.data;
+            $scope.pageData.totalItems = $scope.pageData.users[0].TotalRow;
         }, function errorCallback(response) {
                 $scope.mainLoaderStop();
                 $scope.addAlert({
@@ -40,15 +41,15 @@
     loadData();
 
     $scope.addNew = function () {
-        $state.go('main.code.add');
+        $state.go('main.user.add');
     }
 
     $scope.selectPage = function () {
-        loadCode();
+        loadData();
     }
     $scope.search = function () {
         $scope.pageData.page = 1;
-        loadCode();
+        loadData();
     }
 
     $scope.sort = function (sortBy) {
@@ -61,15 +62,15 @@
             $scope.pageData.reverse = false;
         }
 
-        loadCode();
+        loadData();
     }
 
     $scope.delete = function (id, name) {
         $scope.isConfirmed().result.then(function (result) {
             $scope.mainLoaderStart();
-            codeService.deleteCode(id).then(function successCallback(response) {
+            userManagementService.delete(id).then(function successCallback(response) {
                 $scope.mainLoaderStop();
-                loadCode();
+                loadData();
                 $scope.addAlert({
                     type: 'success',
                     msg: name + ' has been deleted successfully!'
@@ -90,9 +91,9 @@
         $scope.pageData.page = 1;
         $scope.pageData.itemsPerPage = 15;
         $scope.pageData.search = '';
-        $scope.pageData.sortBy = 'SerialNo';
+        $scope.pageData.sortBy = '[UserFullName]';
         $scope.alerts = [];
-        loadCode();
+        loadData();
     }
     //Alert Builer
     $scope.alerts = [];
@@ -104,10 +105,11 @@
     $scope.closeAlert = function (index) {
         $scope.alerts.splice(index, 1);
     };
-    if ($stateParams.codename) {
+
+    if ($stateParams.name) {
         $scope.addAlert({
             type: 'success',
-            msg: $stateParams.codename+' has been updated successfully!'
+            msg: $stateParams.name+' has been updated successfully!'
         });
     }
     //Confirm Delete Modal

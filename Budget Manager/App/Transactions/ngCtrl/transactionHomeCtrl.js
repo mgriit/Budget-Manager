@@ -13,7 +13,7 @@
    
 
     var loadData = function () {
-        $scope.isLoading = true;
+        $scope.mainLoaderStart();
         var params = {
             page: $scope.pageData.page,
             itemsPerPage: $scope.pageData.itemsPerPage,
@@ -28,11 +28,11 @@
         $scope.pageData.trans = [];
 
         transactionService.getAll(params).then(function successCallback(response) {
-            $scope.isLoading = false;
+            $scope.mainLoaderStop();
             $scope.pageData.trans = response.data;
             $scope.pageData.totalItems = $scope.pageData.trans[0].TotalRow;
         }, function errorCallback(response) {
-            $scope.isLoading = false;
+            $scope.mainLoaderStop();
             $scope.addAlert({
                 type: 'warning',
                 msg: 'No data found!'
@@ -72,16 +72,16 @@
 
     $scope.delete = function (id, name) {
         $scope.isConfirmed().result.then(function (result) {
-            $scope.isLoading = true;
+            $scope.mainLoaderStart();
             transactionService.delete(id).then(function successCallback(response) {
-                $scope.isLoading = false;
+                $scope.mainLoaderStop();
                 loadData();
                 $scope.addAlert({
                     type: 'success',
                     msg: 'Transaction has been deleted successfully!'
                 });
             }, function errorCallback(response) {
-                $scope.isLoading = false;
+                $scope.mainLoaderStop();
                 $scope.addAlert({
                     type: 'warning',
                     msg: 'Transaction can not be deleted!'

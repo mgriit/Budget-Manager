@@ -182,6 +182,7 @@
     <Compile Include="Controllers\api\FiscalYearController.cs" />
     <Compile Include="Controllers\api\ReportController.cs" />
     <Compile Include="Controllers\api\TransactionTypeController.cs" />
+    <Compile Include="Controllers\api\UserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\api\TransactionController.cs" />
     <Compile Include="DLL\Implementations\CodeRepo.cs" />
@@ -219,6 +220,8 @@
     <Compile Include="ViewModels\TransactionFull.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\About\ngCtrl\aboutCtrl.js" />
+    <Content Include="App\About\ngView\about.html" />
     <Content Include="App\app.js" />
     <Content Include="App\Codes\ngCtrl\codeEdit.js" />
     <Content Include="App\Codes\ngCtrl\codeHomeCtrl.js" />
@@ -233,6 +236,10 @@
     <Content Include="App\Users\ngCtrl\userEdit.js" />
     <Content Include="App\Users\ngCtrl\userHomeCtrl.js" />
     <Content Include="App\Users\ngCtrl\userRootCtrl.js" />
+    <Content Include="App\Users\ngService\userManagementService.js" />
+    <Content Include="App\Users\ngView\userEdit.html" />
+    <Content Include="App\Users\ngView\userHome.html" />
+    <Content Include="App\Users\ngView\userRoot.html" />
     <Content Include="Scripts\angular-loading.js" />
     <Content Include="App\Derectives\loading.js" />
     <Content Include="App\Derectives\ng-text-truncate.js" />
@@ -355,8 +362,6 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App\Users\ngService\" />
-    <Folder Include="App\Users\ngView\" />
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
