@@ -13,6 +13,18 @@ namespace Budget_Manager.DLL.Implementations
 {
     public class ReportRepo : IReportRepo
     {
+        public IList<CodeSummary> GetSummaryReport(long fiscalYearId)
+        {
+            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            {
+                var p = new DynamicParameters();
+                p.Add("@FiscalYearId", fiscalYearId);
+                string sql = "dbo.spSummaryReport";
+                var codeSum = cnn.Query<CodeSummary>(sql, p, commandType: CommandType.StoredProcedure).ToList();
+                return codeSum;
+            }
+        }
+
         public IList<TransactionFull> GetTransReport(Int64 codeID, Int64 fiscalYearId, int transactionTypeId)
         {
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))

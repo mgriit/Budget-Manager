@@ -1,12 +1,13 @@
 ﻿app.controller("transactionEditCtrl", ['$scope', '$stateParams', '$state', 'transactionService', function ($scope, $stateParams, $state, transactionService) {
-    $scope.isLoading = false;
+
     $scope.trans = {
         TransactionId: 0,
         CodeId: 0,
         FiscalYearId: 0,
         TransactionTypeId: 0,
         TransactionAmount: '',
-        TransactionNote: ''
+        TransactionNote: '',
+        TransactionDate: null
     }
 
     $scope.id = $stateParams.id;
@@ -23,6 +24,7 @@
             $scope.transType.selected = { id: response.data.TransactionTypeId, name: response.data.Status };
             $scope.trans.TransactionAmount = response.data.TransactionAmount;
             $scope.trans.TransactionNote = response.data.TransactionNote;
+            $scope.trans.TransactionDate = new Date(response.data.TransactionDate);
         }, function errorCallback(response) {
                 $scope.mainLoaderStop();
         });
@@ -39,7 +41,6 @@
         $scope.trans.CodeId = $scope.code.selected.id;
         $scope.trans.FiscalYearId = $scope.fiscalYear.selected.id;
         $scope.trans.TransactionTypeId = $scope.transType.selected.id;
-
         $scope.mainLoaderStart();
 
         transactionService.save($scope.trans).then(function successCallback(response) {
@@ -64,6 +65,7 @@
     $scope.cleardata = function (f) {
         $scope.trans.TransactionAmount = '';
         $scope.trans.TransactionNote = '';
+        $scope.trans.TransactionDate = null;
         $scope.onResetCode();
         $scope.onResetFiscalYear();
         $scope.onResetTransType();
@@ -90,5 +92,28 @@
 
     $scope.closeAlert = function (index) {
         $scope.alerts.splice(index, 1);
+    };
+
+    //datepicker
+    $scope.inlineOptions = {
+        minDate: new Date(),
+        showWeeks: true
+    };
+
+    $scope.dateOptions = {
+        formatYear: 'yy',
+        startingDay: 1
+    };
+
+    $scope.setDate = function (year, month, day) {
+        $scope.trans.TransactionDate = new Date(year, month, day);
+    }; 
+
+    $scope.calender = {
+        opened: false
+    };
+
+    $scope.calOpen = function () {
+        $scope.calender.opened = true;
     };
 }]);

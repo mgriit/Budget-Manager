@@ -11,6 +11,7 @@ using System.Web.Http;
 
 namespace Budget_Manager.Controllers
 {
+    [Authorize]
     public class TransactionController : ApiController
     {
         private readonly ITransactionRepo _repo;
@@ -18,6 +19,7 @@ namespace Budget_Manager.Controllers
         {
             _repo = repo;
         }
+        [HttpGet]
         public IHttpActionResult GetAll(int page, int itemsPerPage, string search, string sortBy, bool reverse, Int64 codeID= 0, Int64 fiscalYearId = 0, int transactionTypeId = 0)
         {
             IList<TransactionFull> trans = null;
@@ -28,6 +30,8 @@ namespace Budget_Manager.Controllers
             }
             return Ok(trans);
         }
+
+        [HttpGet]
         public IHttpActionResult Get(Int64 transactionId)
         {
             TransactionFull transaction = null;

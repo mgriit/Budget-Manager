@@ -25,15 +25,12 @@
 
     $scope.vm = {};
     $scope.vm.dtInstance = {};
-    $scope.vm.dtColumnDefs = [DTColumnDefBuilder.newColumnDef(0).notSortable(),
-        DTColumnDefBuilder.newColumnDef(1).notSortable(),
-        DTColumnDefBuilder.newColumnDef(2).notSortable(),
-        DTColumnDefBuilder.newColumnDef(3).notSortable(),
-        DTColumnDefBuilder.newColumnDef(4).notSortable(),
-        DTColumnDefBuilder.newColumnDef(5).notSortable(),
-        DTColumnDefBuilder.newColumnDef(6).notSortable(),
-        DTColumnDefBuilder.newColumnDef(7).notSortable(),
-        DTColumnDefBuilder.newColumnDef(8).notSortable()
+    $scope.vm.dtColumnDefs = [
+        DTColumnDefBuilder.newColumnDef(0).notSortable(),
+        DTColumnDefBuilder.newColumnDef(1).withClass('text-center').notSortable(),
+        DTColumnDefBuilder.newColumnDef(2).withClass('text-center').notSortable(),
+        DTColumnDefBuilder.newColumnDef(3).withClass('text-center').notSortable(),
+        DTColumnDefBuilder.newColumnDef(4).withClass('text-center').notSortable()
     ];
     var printTitle = '';
     $scope.vm.dtOptions = DTOptionsBuilder.newOptions()
@@ -53,7 +50,7 @@
                 titleAttr: 'Print',
                 footer: true,
                 title: function () {
-                    return '<h3 style="text-align:center">Transaction Report</h3>' + printTitle;
+                    return '<img style="text-align:center" src="../../../img/codereport.png" height="75" width="500"/>' + printTitle;
                 }
             },
             {
@@ -86,7 +83,7 @@
         var codeName = $scope.code.selected == undefined ?'N/A':$scope.code.selected.name;
         var fiscalYearName = $scope.fiscalYear.selected == undefined ?'N/A':$scope.fiscalYear.selected.name;
         var transType = $scope.transType.selected == undefined ? 'N/A' : $scope.transType.selected;
-        printTitle = '<p>Fiscal Year:' + fiscalYearName + '<br/> Code:' + codeName + '<br/> Transaction Type: ' + transType+'</p>';
+        printTitle = '<p style="font-size:14px; text-align:center; padding-top:5px;">Fiscal Year:' + fiscalYearName + '<br/> Code:' + codeName + '</p>';
         $scope.pageData.codeId = $scope.code.selected == undefined ? 0 : $scope.code.selected.id;
         $scope.pageData.fiscalYearId = $scope.fiscalYear.selected == undefined ? 0 : $scope.fiscalYear.selected.id;
         $scope.pageData.transTypeId = $scope.transType.selected == undefined ? 0 : $scope.transType.selected.id;

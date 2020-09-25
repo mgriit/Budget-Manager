@@ -155,3 +155,8 @@
     font-size: 13px;
     top: 45px;
 }
+
+.print-font {
+    text-align:center;
+    font-size:5px;
+}

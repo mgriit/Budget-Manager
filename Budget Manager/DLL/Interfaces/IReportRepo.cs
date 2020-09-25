@@ -10,5 +10,6 @@ namespace Budget_Manager.DLL.Interfaces
     public interface IReportRepo
     {
         IList<TransactionFull> GetTransReport(Int64 codeID, Int64 fiscalYearId, int transactionTypeId);
+        IList<CodeSummary> GetSummaryReport(long fiscalYearId);
     }
 }

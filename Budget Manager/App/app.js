@@ -123,6 +123,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
                 requireLogin: true
             }
         })
+        .state('main.codeSummary', {
+            url: '/codesummary',
+            templateUrl: 'App/CodeSummary/ngView/codeSummary.html',
+            controller: 'codeSummaryCtrl',
+            data: {
+                requireLogin: true
+            }
+        })
         .state('main.codeTransfer', {
             url: '/codetransfer',
             templateUrl: 'App/CodeTransfer/ngView/codeTransfer.html',
@@ -144,7 +152,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
 }]);
 
 //global veriable for store service base path
-app.constant('serviceBasePath', 'http://localhost:50465');
+//app.constant('serviceBasePath', 'http://budrcc-001-site1.dtempurl.com');
+//app.constant('serviceBasePath', 'http://localhost:50465');
 
 app.run(['$rootScope', '$state', 'userService', function ($rootScope, $state, userService) {
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
@@ -159,20 +168,22 @@ app.run(['$rootScope', '$state', 'userService', function ($rootScope, $state, us
     });
 }]);
 
-app.factory('userService', function () {
+app.factory('userService', ['localStorageService', function (localStorageService) {
     var fac = {};
     fac.CurrentUser = null;
 
     fac.SetCurrentUser = function (user) {
         fac.CurrentUser = user;
-        sessionStorage.user = angular.toJson(user);
+        // sessionStorage.user = angular.toJson(user);
+        localStorageService.set('authorizationData', user);
     }
     fac.GetCurrentUser = function () {
-        fac.CurrentUser = angular.fromJson(sessionStorage.user);
+        //fac.CurrentUser = angular.fromJson(sessionStorage.user);
+        fac.CurrentUser = localStorageService.get('authorizationData');
         return fac.CurrentUser;
     }
     return fac;
-})
+}])
 
 
 //http interceptor
@@ -191,10 +202,6 @@ app.config(['$httpProvider', function ($httpProvider) {
                     $location.path('/login');
                     return $q.reject(rejection);
                 }
-                if (rejection.status === 403) {
-                    $location.path('/unauthorized');
-                    return $q.reject(rejection);
-                }
                 return $q.reject(rejection);
             }
 
@@ -204,6 +211,5 @@ app.config(['$httpProvider', function ($httpProvider) {
     interceptor.$inject = params;
     $httpProvider.interceptors.push(interceptor);
 }]);
-
 
 

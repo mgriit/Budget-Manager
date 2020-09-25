@@ -16,7 +16,7 @@ namespace Budget_Manager.Controllers.api
         {
             _repo = repo;
         }
-
+        [HttpGet]
         [Route("api/FiscalYear/short")]
         public IHttpActionResult Get()
         {

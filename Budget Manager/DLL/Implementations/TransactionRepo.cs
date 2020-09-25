@@ -73,12 +73,10 @@ namespace Budget_Manager.DLL.Implementations
                 p.Add("@TransactionTypeId", transaction.TransactionTypeId);              
                 p.Add("@TransactionAmount", transaction.TransactionTypeId>1 && transaction.TransactionTypeId <5 ? -(transaction.TransactionAmount) : transaction.TransactionAmount);
                 p.Add("@TransactionNote", transaction.TransactionNote);
- 
-
+                p.Add("@TransactionDate", transaction.TransactionDate);
 
                 if (transaction.TransactionId == 0)
-                {
-                    p.Add("@TransactionDate", DateTime.Now);
+                {              
                     p.Add("@DateCreated", DateTime.Now);
                     p.Add("@Creator", transaction.Creator);
                     string sql = "dbo.spTransaction_AddNew";

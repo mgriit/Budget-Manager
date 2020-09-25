@@ -74,15 +74,29 @@
                                 <span class="help-block" ng-show="addTrans.transtype.$error.required && (addTrans.transtype.$touched || addTrans.$submitted)">Code Name is Required.</span>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="firstname" class="control-label">Transaction Amount*</label>
-                                <input type="number" class="form-control" id="transsactionAmount" name="transsactionAmount" ng-model="trans.TransactionAmount" />
+                        <div class="col-sm-6">                           
+                            <div class="form-group" ng-class="{'has-error' : addTrans.transdate.$invalid && (addTrans.transdate.$touched || addTrans.$submitted)}">
+                                <label for="transdate" class="control-label">Voucher Date*</label>
+                                <p class="input-group">
+                                    <input type="text" class="form-control" name="transdate" uib-datepicker-popup="dd/MM/yy" ng-model="trans.TransactionDate" is-open="calender.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="calOpen()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </p>
+                                <span class="help-block" ng-show="addTrans.transdate.$error.required && (addTrans.transdate.$touched || addTrans.$submitted)">Voucher Date is Required.</span>
                             </div>
-                        </div>
+                        </div>               
                     </div>
+
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">                         
+                            <div class="form-group" ng-class="{'has-error' : addTrans.transsactionAmount.$invalid && (addTrans.transsactionAmount.$touched || addTrans.$submitted)}">
+                                <label for="transsactionAmount" class="control-label">Transaction Amount*</label>
+                                <input type="number" class="form-control" id="transsactionAmount" name="transsactionAmount" ng-model="trans.TransactionAmount" ng-required="true" />
+                                <span class="help-block" ng-show="addTrans.transsactionAmount.$error.required && (addTrans.transsactionAmount.$touched || addTrans.$submitted)">Transaction Amount is Required.</span>
+                            </div>                      
+                        </div>
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="firstname" class="control-label">Description</label>
                                 <textarea class="form-control" id="transactionNote" name="transactionNote" style="min-height:100px" ng-model="trans.TransactionNote" />

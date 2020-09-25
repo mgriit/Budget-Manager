@@ -12,6 +12,7 @@ using System.Web.Http;
 
 namespace Budget_Manager.Controllers.api
 {
+    [Authorize]
     public class CodeController : ApiController
     {
         private readonly ICodeRepo _repo;
@@ -19,7 +20,7 @@ namespace Budget_Manager.Controllers.api
         {
             _repo = repo;
         }
-
+        [HttpGet]
         public IHttpActionResult GetCodes(int page, int itemsPerPage,string search,string sortBy, bool reverse)
         {
             IList<Code> codes = null;
@@ -30,12 +31,14 @@ namespace Budget_Manager.Controllers.api
             }
             return Ok(codes);
         }
+        [HttpGet]
         public IHttpActionResult GetCode(Int64 codeId)
         {
             Code codes = null;
             codes = _repo.GetCode(codeId);
             return Ok(codes);
         }
+        [HttpGet]
         [Route("api/code/short")]
         public IHttpActionResult GetCodeShort()
         {
@@ -48,6 +51,7 @@ namespace Budget_Manager.Controllers.api
             }
             return Ok(items);
         }
+        [HttpPost]
         public IHttpActionResult PostNewCode(Code code)
         {
             if (!ModelState.IsValid)
@@ -64,7 +68,7 @@ namespace Budget_Manager.Controllers.api
 
             return Ok();
         }
-
+        [HttpDelete]
         public IHttpActionResult DeleteCodes(Int64 codeId)
         {
             _repo.DeleteCode(codeId);

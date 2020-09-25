@@ -63,45 +63,30 @@
             <thead>
                 <tr>
                     <th>Sr</th>
-                    <th class="text-center">Code-Number</th>
-                    <th class="text-center">Code-Name </th>
-                    <th class="text-center">FiscalYear </th>
+                    <th class="text-center">Description</th>
                     <th class="text-center">Date</th>
-                    <th class="text-center">Status</th>
-                    <th class="text-center">Type</th>
                     <th class="text-left">Amount</th>
-                    <th class="text-center">Note</th>
+                    <th class="text-center">Status</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="item in pageData.trans">
                     <td>{{$index + 1}}</td>
-                    <td>{{ item.CodeNumber }}</td>
-                    <td>{{ item.CodeName }}</td>
-                    <td>{{ item.FiscalYearName }}</td>
-                    <td>{{ item.TransactionDate | date }}</td>
-                    <td>{{ item.Status }}</td>
-                    <td>{{ item.Type }}</td>
-                    <td class="text-left">{{ item.TransactionAmount }}</td>
                     <td style="max-width:300px">
                         {{item.TransactionNote}}
                     </td>
+                    <td>{{ item.TransactionDate | date }}</td>
+                    <td class="text-left">{{ item.TransactionAmount }}</td>
+                    <td>{{ item.Status }}</td>
                 </tr>
-
-            </tbody>
-            <tfoot>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{pageData.trans.length+1}}</td>
                     <td></td>
                     <td class="text-right"><b>Balance</b></td>
                     <td class="text-left"><b>{{pageData.balance}}</b></td>
                     <td></td>
                 </tr>
-            </tfoot>
+            </tbody>
         </table>
     </div>
 </div>

@@ -1,4 +1,4 @@
-﻿app.factory('accountService', ['$http', '$q', 'serviceBasePath', 'userService', function ($http, $q, serviceBasePath, userService) {
+﻿app.factory('accountService', ['$http', '$q', 'userService', function ($http, $q, userService) {
     var fac = {};
     fac.login = function (user) {
         var obj = { 'username': user.username, 'password': user.password, 'grant_type': 'password' };
@@ -13,7 +13,7 @@
         var defer = $q.defer();
         $http({
             method: 'post',
-            url: serviceBasePath + "/token",
+            url: '/token',
             data: Object.toparams(obj),
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         }).then(function (response) {

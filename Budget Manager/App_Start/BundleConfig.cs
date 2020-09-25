@@ -51,9 +51,10 @@ namespace Budget_Manager
                    "~/Scripts/angular-datatables.buttons.min.js",
                    "~/Scripts/select.js",
                    "~/Scripts/spin.min.js",
-                   "~/Scripts/angular-loading.js",
-                   "~/App/app.js"
+                   "~/Scripts/angular-loading.js"
                    ));
+
+        
         }
     }
 }
