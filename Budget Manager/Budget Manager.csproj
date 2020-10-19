@@ -246,6 +246,7 @@
     <Content Include="Content\rdash.min.css" />
     <Content Include="Content\select.min.css" />
     <Content Include="img\ao.jpg" />
+    <Content Include="img\budrcclogo-min.jpg" />
     <Content Include="img\codereport.png" />
     <Content Include="img\codesum.jpg" />
     <Content Include="img\deve-image.jpg" />

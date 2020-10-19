@@ -19,12 +19,12 @@
     $scope.vm = {};
     $scope.vm.dtInstance = {};
     $scope.vm.dtColumnDefs = [
-        DTColumnDefBuilder.newColumnDef(0).notSortable(),
-        DTColumnDefBuilder.newColumnDef(1).notSortable(),
+        DTColumnDefBuilder.newColumnDef(0).withClass('text-center').notSortable(),
+        DTColumnDefBuilder.newColumnDef(1).withClass('text-center').notSortable(),
         DTColumnDefBuilder.newColumnDef(2).withClass('text-center').notSortable(),
-        DTColumnDefBuilder.newColumnDef(3).notSortable(),
-        DTColumnDefBuilder.newColumnDef(4).notSortable(),
-        DTColumnDefBuilder.newColumnDef(5).notSortable()
+        DTColumnDefBuilder.newColumnDef(3).withClass('text-center').notSortable(),
+        DTColumnDefBuilder.newColumnDef(4).withClass('text-center').notSortable(),
+        DTColumnDefBuilder.newColumnDef(5).withClass('text-center').notSortable()
     ];
 
     var printTitle = '';

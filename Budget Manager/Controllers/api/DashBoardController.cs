@@ -12,9 +12,11 @@ namespace Budget_Manager.Controllers.api
     public class DashBoardController : ApiController
     {
         private readonly IDashBoardRepo _repo;
-        public DashBoardController(IDashBoardRepo repo)
+        private readonly IReportRepo _reportRepo;
+        public DashBoardController(IDashBoardRepo repo, IReportRepo reportRepo)
         {
             _repo = repo;
+            _reportRepo = reportRepo;
         }
 
         [Route("api/dashboard/one")]
@@ -23,6 +25,14 @@ namespace Budget_Manager.Controllers.api
             IList<Balance> bal = null;
             bal = _repo.GetBalSummary();
             return Ok(bal);
+        }
+
+        [Route("api/dashboard/two")]
+        public IHttpActionResult Get(Int64 fiscalYearId)
+        {
+            IList<CodeSummary> codeSum = null;
+            codeSum = _reportRepo.GetSummaryReport(fiscalYearId);
+            return Ok(codeSum);
         }
     }
 }
