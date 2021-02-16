@@ -115,7 +115,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
                 requireLogin: true
             }
         })
-        .state('main.transReport', {
+        .state('main.transReport ', {
             url: '/transreport',
             templateUrl: 'App/TransReport/ngView/transReport.html',
             controller: 'transReportCtrl',
