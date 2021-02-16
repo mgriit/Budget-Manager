@@ -91,7 +91,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
             controller: 'userRootCtrl',
             abstract: true
         })
-        .state('main.user.home', {
+        .state('main.user.home ', {
             url: '/:name',
             templateUrl: 'App/Users/ngView/userHome.html',
             controller: 'userHomeCtrl',
