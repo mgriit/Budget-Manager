@@ -9,10 +9,10 @@
                 </a>
             </li>
             <li class="sidebar-title"><span>NAVIGATION</span></li>
-            <li class="sidebar-list">
-                <a ui-sref="main.dashboard">Dashboard <span class="menu-icon fa fa-tachometer"></span></a>
+            <li class="sidebar-list" ng-repeat="item in menus">
+                <a ui-sref="{{item.MenuLink}}">{{item.MenuText}} <span class="{{item.MenuIcon}}"></span></a>
             </li>
-            <li class="sidebar-list">
+            <!--<li class="sidebar-list">
                 <a ui-sref="main.transaction.home">Transaction <span class="menu-icon fa fa-bar-chart"></span></a>
             </li>
             <li class="sidebar-list">
@@ -32,7 +32,7 @@
             </li>
             <li class="sidebar-list">
                 <a ui-sref="main.about">About <span class="menu-icon fa fa-book"></span></a>
-            </li>
+            </li>-->
         </ul>
         <div class="sidebar-footer">
             <div class="col-xs-12">
@@ -43,67 +43,68 @@
         </div>
     </div>
     <!-- End Sidebar -->
+    <div class="container-fluid">
+        <div id="content-wrapper">
+            <div class="page-content">
 
-    <div id="content-wrapper">
-        <div class="page-content">
+                <!-- Header Bar -->
+                <div class="row header">
+                    <div class="col-xs-12">
+                        <div class="user pull-right">
+                            <div class="item dropdown" uib-dropdown>
+                                <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
+                                    <img src="img/avatar.jpg">
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="dropdown-header">
+                                        <span style="font-size:20px">{{userName}}</span>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li class="link">
+                                        <a href="#">
+                                            Profile
+                                        </a>
+                                    </li>
 
-            <!-- Header Bar -->
-            <div class="row header">
-                <div class="col-xs-12">
-                    <div class="user pull-right">
-                        <div class="item dropdown" uib-dropdown>
-                            <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
-                                <img src="img/avatar.jpg">
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-right">
-                                <li class="dropdown-header">
-                                    <span style="font-size:20px">{{userName}}</span>
-                                </li>
-                                <li class="divider"></li>
-                                <li class="link">
-                                    <a href="#">
-                                        Profile
-                                    </a>
-                                </li>
-  
-                                <li class="divider"></li>
-                                <li class="link">
-                                    <a ng-click="logout()" onclick="return false;" href="#">
-                                        Logout
-                                    </a>
-                                </li>
-                            </ul>
+                                    <li class="divider"></li>
+                                    <li class="link">
+                                        <a ng-click="logout()" onclick="return false;" href="#">
+                                            Logout
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="item dropdown" uib-dropdown>
+                                <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
+                                    <i class="fa fa-bell-o"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="dropdown-header">
+                                        Notifications
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#">Server Down!</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="item dropdown" uib-dropdown>
-                            <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
-                                <i class="fa fa-bell-o"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-right">
-                                <li class="dropdown-header">
-                                    Notifications
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="#">Server Down!</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="meta">
-                        <div class="page">
-                            {{pageTitle}}
-                        </div>
-                        <div class="breadcrumb-links">
-                            Home / {{pageSubTitle}}
+                        <div class="meta">
+                            <div class="page">
+                                {{pageTitle}}
+                            </div>
+                            <div class="breadcrumb-links">
+                                Home / {{pageSubTitle}}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- End Header Bar -->
-            <!-- Main Content -->
+                <!-- End Header Bar -->
+                <!-- Main Content -->
 
-            <div ui-view></div>
+                <div ui-view></div>
 
-        </div><!-- End Page Content -->
-    </div><!-- End Content Wrapper -->
-</div><!-- End Page Wrapper -->
+            </div><!-- End Page Content -->
+        </div><!-- End Content Wrapper -->
+        </div>
+    </div><!-- End Page Wrapper -->

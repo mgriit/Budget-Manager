@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using static Budget_Manager.Helpers.DbConnection;
 
@@ -13,13 +14,13 @@ namespace Budget_Manager.DLL.Implementations
 {
     public class DashBoardRepo : IDashBoardRepo
     {
-        public IList<Balance> GetBalSummary()
+        public async Task<IEnumerable<Balance>> GetBalSummary()
         {
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
             {
                 var p = new DynamicParameters();
                 string sql = "dbo.spDashBoard_AlotvsSpend";
-                var bal = cnn.Query<Balance>(sql, p, commandType: CommandType.StoredProcedure).ToList();
+                var bal = await cnn.QueryAsync<Balance>(sql, p, commandType: CommandType.StoredProcedure);
                 return bal;
             }
         }

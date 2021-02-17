@@ -60,7 +60,15 @@ namespace Budget_Manager.App_Start
             builder.RegisterType<CodeTransferRepo>()
                    .As<ICodeTransferRepo>()
                    .InstancePerRequest();
-            
+
+            builder.RegisterType<MenuRepo>()
+                   .As<IMenuRepo>()
+                   .InstancePerRequest(); 
+
+            builder.RegisterType<RoleRepo>()
+                   .As<IRoleRepo>()
+                   .InstancePerRequest();
+
             //Set the dependency resolver to be Autofac.  
             Container = builder.Build();
 

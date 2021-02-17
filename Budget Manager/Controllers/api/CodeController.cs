@@ -8,11 +8,11 @@ using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace Budget_Manager.Controllers.api
 {
-    [Authorize]
     public class CodeController : ApiController
     {
         private readonly ICodeRepo _repo;
@@ -21,38 +21,38 @@ namespace Budget_Manager.Controllers.api
             _repo = repo;
         }
         [HttpGet]
-        public IHttpActionResult GetCodes(int page, int itemsPerPage,string search,string sortBy, bool reverse)
+        public async Task<IHttpActionResult> GetCodes(int page, int itemsPerPage,string search,string sortBy, bool reverse)
         {
-            IList<Code> codes = null;
-            codes = _repo.GetAllCode(page, itemsPerPage, search, sortBy,reverse);
-            if (codes.Count == 0)
+            IEnumerable<Code> codes = null;
+            codes = await _repo.GetAllCode(page, itemsPerPage, search, sortBy,reverse);
+            if (codes.Count() == 0)
             {
                 return NotFound();
             }
             return Ok(codes);
         }
         [HttpGet]
-        public IHttpActionResult GetCode(Int64 codeId)
+        public async Task<IHttpActionResult> GetCode(Int64 codeId)
         {
             Code codes = null;
-            codes = _repo.GetCode(codeId);
+            codes =await _repo.GetCode(codeId);
             return Ok(codes);
         }
         [HttpGet]
         [Route("api/code/short")]
-        public IHttpActionResult GetCodeShort()
+        public async Task<IHttpActionResult> GetCodeShort()
         {
-            IList<Item> items = null;
-            items = _repo.GetCodeShort();
+            IEnumerable<Item> items = null;
+            items =await _repo.GetCodeShort();
 
-            if (items.Count == 0)
+            if (items.Count() == 0)
             {
                 return NotFound();
             }
             return Ok(items);
         }
         [HttpPost]
-        public IHttpActionResult PostNewCode(Code code)
+        public async Task<IHttpActionResult> PostNewCode(Code code)
         {
             if (!ModelState.IsValid)
                 return BadRequest("Invalid data.");
@@ -64,14 +64,14 @@ namespace Budget_Manager.Controllers.api
 
             code.Creator = Convert.ToInt64(userId);
 
-            _repo.SaveCode(code);
+            await _repo.SaveCode(code);
 
             return Ok();
         }
         [HttpDelete]
-        public IHttpActionResult DeleteCodes(Int64 codeId)
+        public async Task<IHttpActionResult> DeleteCodes(Int64 codeId)
         {
-            _repo.DeleteCode(codeId);
+            await _repo.DeleteCode(codeId);
             return Ok();
         }
     }

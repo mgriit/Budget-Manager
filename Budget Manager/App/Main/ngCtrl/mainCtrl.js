@@ -1,4 +1,4 @@
-﻿app.controller("mainCtrl", ['$scope', '$cookies', '$state', 'accountService', 'userService', function ($scope, $cookies, $state, accountService, userService) {
+﻿app.controller("mainCtrl", ['$scope', '$cookies', '$state', 'accountService', 'userService', 'mainService', function ($scope, $cookies, $state, accountService, userService, mainService) {
     /**
      * Sidebar Toggle & Cookie Control
      */
@@ -44,6 +44,16 @@
     if (userService.GetCurrentUser()) {
         $scope.userName = userService.GetCurrentUser().userName;
     }
-   
+
+    var loadMenu = function () {
+        $scope.menus = [];
+        mainService.getPermittedMenu().then(function successCallback(response) {
+            $scope.menus = response.data;
+        }, function errorCallback(response) {
+
+        });
+    }
+
+    loadMenu();
 
 }]);

@@ -179,7 +179,9 @@
     <Compile Include="Controllers\api\CodeTransferController.cs" />
     <Compile Include="Controllers\api\DashBoardController.cs" />
     <Compile Include="Controllers\api\FiscalYearController.cs" />
+    <Compile Include="Controllers\api\MenuController.cs" />
     <Compile Include="Controllers\api\ReportController.cs" />
+    <Compile Include="Controllers\api\RoleController.cs" />
     <Compile Include="Controllers\api\TransactionTypeController.cs" />
     <Compile Include="Controllers\api\UserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -188,6 +190,8 @@
     <Compile Include="DLL\Implementations\CodeTransferRepo.cs" />
     <Compile Include="DLL\Implementations\DashBoardRepo.cs" />
     <Compile Include="DLL\Implementations\FiscalYearRepo.cs" />
+    <Compile Include="DLL\Implementations\MenuRepo.cs" />
+    <Compile Include="DLL\Implementations\RoleRepo.cs" />
     <Compile Include="DLL\Implementations\TransactionRepo.cs" />
     <Compile Include="DLL\Implementations\TransactionTypeRepo.cs" />
     <Compile Include="DLL\Implementations\ReportRepo.cs" />
@@ -196,6 +200,8 @@
     <Compile Include="DLL\Interfaces\ICodeTransferRepo.cs" />
     <Compile Include="DLL\Interfaces\IDashBoardRepo.cs" />
     <Compile Include="DLL\Interfaces\IFiscalYearRepo.cs" />
+    <Compile Include="DLL\Interfaces\IMenuRepo.cs" />
+    <Compile Include="DLL\Interfaces\IRoleRepo.cs" />
     <Compile Include="DLL\Interfaces\ITransactionRepo.cs" />
     <Compile Include="DLL\Interfaces\ITransactionTypeRepo.cs" />
     <Compile Include="DLL\Interfaces\IReportRepo.cs" />
@@ -203,6 +209,7 @@
     <Compile Include="Entities\Code.cs" />
     <Compile Include="Entities\Codetransfer.cs" />
     <Compile Include="Entities\FiscalYear.cs" />
+    <Compile Include="Entities\Menu.cs" />
     <Compile Include="Entities\Transaction.cs" />
     <Compile Include="Entities\TransactionType.cs" />
     <Compile Include="Entities\User.cs" />
@@ -217,6 +224,7 @@
     <Compile Include="ViewModels\Balance.cs" />
     <Compile Include="ViewModels\CodeSummary.cs" />
     <Compile Include="ViewModels\Item.cs" />
+    <Compile Include="ViewModels\RoleMenuPermission.cs" />
     <Compile Include="ViewModels\TransactionFull.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +243,12 @@
     <Content Include="App\CodeTransfer\ngCtrl\codeTransferCtrl.js" />
     <Content Include="App\CodeTransfer\ngService\codeTransferService.js" />
     <Content Include="App\CodeTransfer\ngView\codeTransfer.html" />
+    <Content Include="App\Main\ngService\mainService.js" />
+    <Content Include="App\Role\ngCtrl\roleMenuCtrl.js" />
+    <Content Include="App\Role\ngCtrl\roleRootCtrl.js" />
+    <Content Include="App\Role\ngService\roleService.js" />
+    <Content Include="App\Role\ngView\roleMenu.html" />
+    <Content Include="App\Role\ngView\roleRoot.html" />
     <Content Include="App\Users\ngCtrl\userEdit.js" />
     <Content Include="App\Users\ngCtrl\userHomeCtrl.js" />
     <Content Include="App\Users\ngCtrl\userRootCtrl.js" />

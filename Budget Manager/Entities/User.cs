@@ -12,7 +12,8 @@ namespace Budget_Manager.Entities
         public string Password { get; set; }
         public string UserFullName { get; set; }
         public string Designation { get; set; }
-        public bool IsAdmin { get; set; }
+        public int RoleId { get; set; }
+        public string RoleName { get; set; }
         public DateTime? DateCreated { get; set; }
         public DateTime? DateModified { get; set; }
         public Int64? Creator { get; set; }

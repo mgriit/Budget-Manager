@@ -1,4 +1,5 @@
 ﻿using Budget_Manager.Entities;
+using Budget_Manager.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,11 @@ namespace Budget_Manager.DLL.Interfaces
 {
     public interface IUserRepo
     {
-        User FindUser(string userName, string password);
-        User FindUser(Int64 userId);
-        IList<User> GetAll(int page, int itemsPerPage, string search, string sortBy, bool reverse);
-        bool Delete(long userId);
-        int Save(User user);
+        Task<User> FindUser(string userName, string password);
+        Task<User> FindUser(Int64 userId);
+        Task<IEnumerable<User>> GetAll(int page, int itemsPerPage, string search, string sortBy, bool reverse);
+        Task<bool> Delete(long userId);
+        Task<int> Save(User user);
+        Task<IEnumerable<Item>> GetRoles();
     }
 }

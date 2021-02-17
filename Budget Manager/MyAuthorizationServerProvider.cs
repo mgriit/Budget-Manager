@@ -22,7 +22,7 @@ namespace Budget_Manager
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
 
             UserRepo _repo = new UserRepo();
-            User user=_repo.FindUser(context.UserName, context.Password);
+            User user=await _repo.FindUser(context.UserName, context.Password);
             
             if (user == null)
             {              
@@ -32,7 +32,7 @@ namespace Budget_Manager
 
             identity.AddClaim(new Claim("UserId", user.UserId.ToString()));
             identity.AddClaim(new Claim(ClaimTypes.Name, user.UserFullName));
-            identity.AddClaim(new Claim(ClaimTypes.Role, user.IsAdmin ? "Admin":"User"));
+            identity.AddClaim(new Claim(ClaimTypes.Role, user.RoleName));
             context.Validated(identity);
         }
     }

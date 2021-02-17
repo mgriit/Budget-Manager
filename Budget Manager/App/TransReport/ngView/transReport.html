@@ -1,5 +1,5 @@
 ﻿<div class="row">
-    <div class="col-md-3">
+    <div class="col-md-4">
         <div class="form-group">
             <div class="input-group">
                 <ui-select allow-clear ng-model="fiscalYear.selected" theme="bootstrap">
@@ -33,7 +33,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-4">
         <div class="form-group">
             <div class="input-group">
                 <ui-select allow-clear ng-model="transType.selected" theme="bootstrap">
@@ -50,7 +50,18 @@
             </div>
         </div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-4">
+        <div class="form-group">
+            <div class="input-group">
+                <select ng-model="t">
+                    <option>------All-------</option>
+                    <option>Debit</option>
+                    <option>Credit</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
         <button type="button" ng-click="getReport()" ng-disabled="!fiscalYear.selected" class="btn btn-success" style="width:100%">
             <span class="glyphicon glyphicon-record"></span> View Report
         </button>
@@ -70,7 +81,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="item in pageData.trans">
+                <tr ng-repeat="item in (pageData.trans | t) ">
                     <td>{{$index + 1}}</td>
                     <td style="max-width:300px">
                         {{item.TransactionNote}}
@@ -78,6 +89,7 @@
                     <td>{{ item.TransactionDate | date }}</td>
                     <td class="text-left">{{ item.TransactionAmount }}</td>
                     <td>{{ item.Status }}</td>
+                    <td>{{item.Type}}</td>
                 </tr>
                 <tr>
                     <td>{{pageData.trans.length+1}}</td>

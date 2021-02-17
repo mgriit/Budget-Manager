@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace Budget_Manager.Controllers
@@ -20,11 +21,11 @@ namespace Budget_Manager.Controllers
             _repo = repo;
         }
         [HttpGet]
-        public IHttpActionResult GetAll(int page, int itemsPerPage, string search, string sortBy, bool reverse, Int64 codeID= 0, Int64 fiscalYearId = 0, int transactionTypeId = 0)
+        public async Task<IHttpActionResult> GetAll(int page, int itemsPerPage, string search, string sortBy, bool reverse, Int64 codeID= 0, Int64 fiscalYearId = 0, int transactionTypeId = 0)
         {
-            IList<TransactionFull> trans = null;
-            trans = _repo.GetAllTransaction(page, itemsPerPage, search, sortBy, reverse, codeID, fiscalYearId, transactionTypeId);
-            if (trans.Count == 0)
+            IEnumerable<TransactionFull> trans = null;
+            trans = await _repo.GetAllTransaction(page, itemsPerPage, search, sortBy, reverse, codeID, fiscalYearId, transactionTypeId);
+            if (trans.Count() == 0)
             {
                 return NotFound();
             }
@@ -32,14 +33,14 @@ namespace Budget_Manager.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult Get(Int64 transactionId)
+        public async Task<IHttpActionResult> Get(Int64 transactionId)
         {
             TransactionFull transaction = null;
-            transaction = _repo.GetTransaction(transactionId);
+            transaction =await _repo.GetTransaction(transactionId);
             return Ok(transaction);
         }
 
-        public IHttpActionResult Post(Transaction transaction)
+        public async Task<IHttpActionResult> Post(Transaction transaction)
         {
             if (!ModelState.IsValid)
                 return BadRequest("Invalid data.");
@@ -51,14 +52,14 @@ namespace Budget_Manager.Controllers
 
             transaction.Creator = Convert.ToInt64(userId);
 
-            _repo.SaveTransaction(transaction);
+            await _repo.SaveTransaction(transaction);
 
             return Ok();
         }
 
-        public IHttpActionResult Delete(Int64 transactionId)
+        public async Task<IHttpActionResult> Delete(Int64 transactionId)
         {
-            _repo.DeleteTransaction(transactionId);
+            await _repo.DeleteTransaction(transactionId);
             return Ok();
         }
     }

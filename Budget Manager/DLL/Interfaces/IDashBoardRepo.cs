@@ -9,6 +9,6 @@ namespace Budget_Manager.DLL.Interfaces
 {
     public interface IDashBoardRepo
     {
-        IList<Balance> GetBalSummary();
+        Task<IEnumerable<Balance>> GetBalSummary();
     }
 }

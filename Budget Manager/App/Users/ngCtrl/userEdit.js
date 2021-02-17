@@ -5,8 +5,17 @@
         Username: '',
         Designation: '',
         Password: '',
-        IsAdmin: false
+        RoleId: 3
     }
+
+    $scope.roles = [];
+    $scope.role = {};
+    $scope.role.selected = undefined;
+
+    userManagementService.getRoles().then(function successCallback(response) {
+        $scope.roles = response.data;
+    }, function errorCallback(response) {
+    });
 
     $scope.id = $stateParams.id;
 
@@ -21,7 +30,7 @@
             $scope.user.Designation = response.data.Designation;
             $scope.user.Username = response.data.Username;
             $scope.user.Password = response.data.Password;
-            $scope.user.IsAdmin = response.data.IsAdmin;
+            $scope.role.selected = { id: response.data.RoleId, name: response.data.RoleName};
         }, function errorCallback(response) {
                 $scope.mainLoaderStop();
         });
@@ -36,6 +45,8 @@
         if (form.$invalid) {
             return;
         }
+
+        $scope.user.RoleId = $scope.role.selected == undefined ? 3 : $scope.role.selected.id;
 
         $scope.mainLoaderStart();
 
@@ -67,6 +78,10 @@
         $scope.user.Password = '';  
         f.$setUntouched();
         f.$setPristine();
+    }
+
+    $scope.onResetRole = function () {
+        $scope.role.selected = undefined;
     }
     //Alert Builer
     $scope.alerts = [];

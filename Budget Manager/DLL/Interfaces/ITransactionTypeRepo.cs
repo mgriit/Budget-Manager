@@ -9,6 +9,6 @@ namespace Budget_Manager.DLL.Interfaces
 {
     public interface ITransactionTypeRepo
     {
-        IList<Item> GetTransTypeShort();
+        Task<IEnumerable<Item>> GetTransTypeShort();
     }
 }

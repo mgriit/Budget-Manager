@@ -10,10 +10,10 @@ namespace Budget_Manager.DLL.Interfaces
 {
     public interface ITransactionRepo
     {
-        IList<TransactionFull> GetAllTransaction(int page, int itemsPerPage, string search, string sortBy, bool reverse, Int64 codeID, Int64 fiscalYearId, int transactionTypeId);
-        bool SaveTransaction(Transaction transaction);
-        TransactionFull GetTransaction(Int64 transactionId);
-        bool DeleteTransaction(long transactionId);
+        Task<IEnumerable<TransactionFull>> GetAllTransaction(int page, int itemsPerPage, string search, string sortBy, bool reverse, Int64 codeID, Int64 fiscalYearId, int transactionTypeId);
+        Task<bool> SaveTransaction(Transaction transaction);
+        Task<TransactionFull> GetTransaction(Int64 transactionId);
+        Task<bool> DeleteTransaction(long transactionId);
  
     }
 }

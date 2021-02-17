@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace Budget_Manager.Controllers.api
@@ -20,18 +21,18 @@ namespace Budget_Manager.Controllers.api
         }
 
         [Route("api/dashboard/one")]
-        public IHttpActionResult Get()
+        public async Task<IHttpActionResult> Get()
         {
-            IList<Balance> bal = null;
-            bal = _repo.GetBalSummary();
+            IEnumerable<Balance> bal = null;
+            bal =await _repo.GetBalSummary();
             return Ok(bal);
         }
 
         [Route("api/dashboard/two")]
-        public IHttpActionResult Get(Int64 fiscalYearId)
+        public async Task<IHttpActionResult> Get(Int64 fiscalYearId)
         {
-            IList<CodeSummary> codeSum = null;
-            codeSum = _reportRepo.GetSummaryReport(fiscalYearId);
+            IEnumerable<CodeSummary> codeSum = null;
+            codeSum = await _reportRepo.GetSummaryReport(fiscalYearId);
             return Ok(codeSum);
         }
     }

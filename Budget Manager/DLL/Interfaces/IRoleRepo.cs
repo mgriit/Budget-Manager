@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Budget_Manager.DLL.Interfaces
 {
-    public interface IFiscalYearRepo
+    public interface IRoleRepo
     {
-        Task<IEnumerable<Item>> GetFiscalYearShort();
+        Task<IEnumerable<Item>> GetRoleShort();
     }
 }

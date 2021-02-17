@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace Budget_Manager.Controllers.api
@@ -18,12 +19,12 @@ namespace Budget_Manager.Controllers.api
         }
         [HttpGet]
         [Route("api/FiscalYear/short")]
-        public IHttpActionResult Get()
+        public async Task<IHttpActionResult> Get()
         {
-            IList<Item> items = null;
-            items = _repo.GetFiscalYearShort();
+            IEnumerable<Item> items = null;
+            items = await _repo.GetFiscalYearShort();
 
-            if (items.Count == 0)
+            if (items.Count() == 0)
             {
                 return NotFound();
             }

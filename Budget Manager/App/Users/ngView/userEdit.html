@@ -49,9 +49,28 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-6">                     
-                            <label for="password" class="control-label">Is Admin? &nbsp;</label>
-                            <input type="checkbox" id="isadmin" name="isadmin" ng-model="user.IsAdmin" />
+                        <div class="col-sm-6">  
+                            <div class="form-group" ng-class="{'has-error' : adduser.role.$invalid && ( adduser.role.$touched || adduser.$submitted)}">
+                                <label for="role" class="control-label">Role*</label>
+                                <div class="input-group">
+                                    <ui-select allow-clear ng-model="role.selected" theme="bootstrap" name="role" id="role" ng-required="true">
+                                        <ui-select-match placeholder="---Select a Role---">{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices repeat="item in (roles | filter: $select.search) track by item.id">
+                                            <span ng-bind-html="item.name | highlight: $select.search"></span>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="onResetRole()" class="btn btn-default">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                <span class="help-block" ng-show="adduser.role.$error.required && (adduser.role.$touched || adduser.$submitted)">Role is Required.</span>
+                            </div>
+
+
+                            <!--<label for="password" class="control-label">Is Admin? &nbsp;</label>
+                            <input type="checkbox" id="isadmin" name="isadmin" ng-model="user.IsAdmin" />-->
                         </div>
                     </div>
                 </rd-widget-body>

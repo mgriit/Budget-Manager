@@ -115,6 +115,20 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
                 requireLogin: true
             }
         })
+        .state('main.role', {
+            url: '/role',
+            templateUrl: 'App/Role/ngView/roleRoot.html',
+            controller: 'roleRootCtrl',
+            abstract: true
+        })
+        .state('main.role.menu', {
+            url: '/menu/',
+            templateUrl: 'App/Role/ngView/roleMenu.html',
+            controller: 'roleMenuCtrl',
+            data: {
+                requireLogin: true
+            }
+        })
         .state('main.transReport', {
             url: '/transreport',
             templateUrl: 'App/TransReport/ngView/transReport.html',

@@ -30,6 +30,13 @@
         });
     };
 
+    factory.getRoles = function () {
+        return $http({
+            method: 'GET',
+            url: '/api/user/role'
+        });
+    };
+
     return factory;
 
 }]); 

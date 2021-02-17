@@ -61,11 +61,9 @@
                                 <td>{{ item.Designation }}</td>
                                 <td>{{ item.Username }}</td>
 
-                                <th class="text-center">
-                                    <span class="label" ng-class="{true:'label-success', false:'label-danger', '':'hidden'}[item.IsAdmin]">
-                                        {{ item.IsAdmin ? 'Admin' : 'User' }}
-                                    </span>
-                                </th>
+                                <td class="text-center">                                   
+                                    {{ item.RoleName}}
+                                </td>
                                 <td>{{ item.DateCreated | date}}</td>
                                 <td>
                                     <a ui-sref="main.user.update({id:item.UserId})" class="glyphicon glyphicon-edit"></a>

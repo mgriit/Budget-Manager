@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using static Budget_Manager.Helpers.DbConnection;
 
@@ -13,19 +14,19 @@ namespace Budget_Manager.DLL.Implementations
 {
     public class ReportRepo : IReportRepo
     {
-        public IList<CodeSummary> GetSummaryReport(long fiscalYearId)
+        public async Task<IEnumerable<CodeSummary>> GetSummaryReport(long fiscalYearId)
         {
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
             {
                 var p = new DynamicParameters();
                 p.Add("@FiscalYearId", fiscalYearId);
                 string sql = "dbo.spSummaryReport";
-                var codeSum = cnn.Query<CodeSummary>(sql, p, commandType: CommandType.StoredProcedure).ToList();
+                var codeSum =await cnn.QueryAsync<CodeSummary>(sql, p, commandType: CommandType.StoredProcedure);
                 return codeSum;
             }
         }
 
-        public IList<TransactionFull> GetTransReport(Int64 codeID, Int64 fiscalYearId, int transactionTypeId)
+        public async Task<IEnumerable<TransactionFull>> GetTransReport(Int64 codeID, Int64 fiscalYearId, int transactionTypeId)
         {
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
             {
@@ -35,7 +36,7 @@ namespace Budget_Manager.DLL.Implementations
                 p.Add("@TransactionTypeId", transactionTypeId);
               
                 string sql = "dbo.spTransReport";
-                var trans = cnn.Query<TransactionFull>(sql, p, commandType: CommandType.StoredProcedure).ToList();
+                var trans =await cnn.QueryAsync<TransactionFull>(sql, p, commandType: CommandType.StoredProcedure);
                 return trans;
             }
         }

@@ -1,5 +1,4 @@
 ﻿using Budget_Manager.DLL.Interfaces;
-using Budget_Manager.Entities;
 using Budget_Manager.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -11,19 +10,20 @@ using System.Web.Http;
 
 namespace Budget_Manager.Controllers.api
 {
-    public class TransactionTypeController : ApiController
+    public class RoleController : ApiController
     {
-        private readonly ITransactionTypeRepo _repo;
-        public TransactionTypeController(ITransactionTypeRepo repo)
+        private readonly IRoleRepo _repo;
+        public RoleController(IRoleRepo repo)
         {
             _repo = repo;
         }
 
-        [Route("api/TransactionType/short")]
-        public async Task<IHttpActionResult> Get()
+        [HttpGet]
+        [Route("api/role/short")]
+        public async Task<IHttpActionResult> GetCodeShort()
         {
             IEnumerable<Item> items = null;
-            items =await _repo.GetTransTypeShort();
+            items = await _repo.GetRoleShort();
 
             if (items.Count() == 0)
             {
