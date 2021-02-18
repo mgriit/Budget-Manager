@@ -12,7 +12,6 @@ using System.Web.Http;
 
 namespace Budget_Manager.Controllers.api
 {
-    [Authorize(Roles ="Admin")]
     public class UserController : ApiController
     {
         private readonly IUserRepo _repo;
@@ -20,7 +19,7 @@ namespace Budget_Manager.Controllers.api
         {
             _repo = repo;
         }
-
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IHttpActionResult> Get(int page, int itemsPerPage, string search, string sortBy, bool reverse)
         {
             IEnumerable<User> users = null;
@@ -31,6 +30,7 @@ namespace Budget_Manager.Controllers.api
             }
             return Ok(users);
         }
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IHttpActionResult> Get(Int64 userId)
         {
             User user = null;
@@ -51,7 +51,7 @@ namespace Budget_Manager.Controllers.api
             }
             return Ok(items);
         }
-
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IHttpActionResult> Post(User user)
         {
             if (!ModelState.IsValid)
@@ -73,7 +73,7 @@ namespace Budget_Manager.Controllers.api
 
             return Ok();
         }
-
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IHttpActionResult> Delete(Int64 userId)
         {
             await _repo.Delete(userId);

@@ -6,18 +6,22 @@
     $scope.codesShort = [];
     $scope.fiscalYearShort = [];
     $scope.transTypeShort = [];
+    $scope.accountTypeShort = [{ name:'Debit'}, { name: 'Credit'}];
     $scope.code = {};
     $scope.fiscalYear = {};
     $scope.transType = {};
+    $scope.accountType = {};
     $scope.code.selected = undefined;
     $scope.fiscalYear.selected = undefined;
     $scope.transType.selected = undefined;
+    $scope.accountType.selected = undefined;
     $scope.pageData = {
         trans: [],
         balance: 0,
         codeId: $scope.code.selected == undefined ? 0 : $scope.code.selected.id,
         fiscalYearId: $scope.fiscalYear.selected == undefined ? 0 : $scope.fiscalYear.selected.id,
         transactionTypeId: $scope.transType.selected == undefined ? 0 : $scope.transType.selected.id,
+        accountType: $scope.accountType.selected == undefined ? 'All' : $scope.accountType.selected.name,
         codeName: '',
         fiscalYearName: '',
         transTypeName: ''
@@ -87,11 +91,13 @@
         $scope.pageData.codeId = $scope.code.selected == undefined ? 0 : $scope.code.selected.id;
         $scope.pageData.fiscalYearId = $scope.fiscalYear.selected == undefined ? 0 : $scope.fiscalYear.selected.id;
         $scope.pageData.transTypeId = $scope.transType.selected == undefined ? 0 : $scope.transType.selected.id;
+        $scope.pageData.accountType = $scope.accountType.selected == undefined ? 'All' : $scope.accountType.selected.name,
 
         $http({
             method: 'GET',
             url: 'api/report/trans?fiscalYearId=' + $scope.pageData.fiscalYearId +
-                '&&codeID=' + $scope.pageData.codeId + '&&transactionTypeId=' + $scope.pageData.transTypeId
+                '&&codeID=' + $scope.pageData.codeId + '&&transactionTypeId=' + $scope.pageData.transTypeId +
+                '&&accountType=' + $scope.pageData.accountType
         }).then(function successCallback(response) {
             $scope.pageData.trans = response.data;
             $scope.pageData.balance = response.data[0].TotalAmount;
@@ -107,5 +113,8 @@
     }
     $scope.onResetTransType = function () {
         $scope.transType.selected = undefined;
+    }
+    $scope.onResetAccountType = function () {
+        $scope.accountType.selected = undefined;
     }
 }]);

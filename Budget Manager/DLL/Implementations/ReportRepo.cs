@@ -26,7 +26,7 @@ namespace Budget_Manager.DLL.Implementations
             }
         }
 
-        public async Task<IEnumerable<TransactionFull>> GetTransReport(Int64 codeID, Int64 fiscalYearId, int transactionTypeId)
+        public async Task<IEnumerable<TransactionFull>> GetTransReport(Int64 codeID, Int64 fiscalYearId, int transactionTypeId,string accountType)
         {
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
             {
@@ -34,6 +34,7 @@ namespace Budget_Manager.DLL.Implementations
                 p.Add("@CodeID", codeID);
                 p.Add("@FiscalYearId", fiscalYearId);
                 p.Add("@TransactionTypeId", transactionTypeId);
+                p.Add("@AccountType", accountType);
               
                 string sql = "dbo.spTransReport";
                 var trans =await cnn.QueryAsync<TransactionFull>(sql, p, commandType: CommandType.StoredProcedure);

@@ -9,7 +9,7 @@ namespace Budget_Manager.DLL.Interfaces
 {
     public interface IReportRepo
     {
-        Task<IEnumerable<TransactionFull>> GetTransReport(Int64 codeID, Int64 fiscalYearId, int transactionTypeId);
+        Task<IEnumerable<TransactionFull>> GetTransReport(Int64 codeID, Int64 fiscalYearId, int transactionTypeId,string accountType);
         Task<IEnumerable<CodeSummary>> GetSummaryReport(long fiscalYearId);
     }
 }

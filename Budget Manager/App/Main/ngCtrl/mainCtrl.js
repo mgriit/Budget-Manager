@@ -47,10 +47,12 @@
 
     var loadMenu = function () {
         $scope.menus = [];
+        $scope.mainLoaderStart();
         mainService.getPermittedMenu().then(function successCallback(response) {
             $scope.menus = response.data;
+            $scope.mainLoaderStop();
         }, function errorCallback(response) {
-
+            $scope.mainLoaderStop();
         });
     }
 

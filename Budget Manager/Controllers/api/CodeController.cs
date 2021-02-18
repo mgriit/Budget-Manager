@@ -13,6 +13,7 @@ using System.Web.Http;
 
 namespace Budget_Manager.Controllers.api
 {
+    [Authorize]
     public class CodeController : ApiController
     {
         private readonly ICodeRepo _repo;

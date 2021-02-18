@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace Budget_Manager.Controllers.api
 {
+    [Authorize]
     public class RoleController : ApiController
     {
         private readonly IRoleRepo _repo;

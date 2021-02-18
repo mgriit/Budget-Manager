@@ -16,5 +16,6 @@ namespace Budget_Manager.DLL.Interfaces
         Task<bool> Delete(long userId);
         Task<int> Save(User user);
         Task<IEnumerable<Item>> GetRoles();
+        Task<int> UpdateProfile(User user);
     }
 }

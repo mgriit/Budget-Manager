@@ -12,7 +12,7 @@ using System.Web.Http;
 
 namespace Budget_Manager.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="SuperAdmin,Admin")]
     public class TransactionController : ApiController
     {
         private readonly ITransactionRepo _repo;

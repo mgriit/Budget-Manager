@@ -180,6 +180,7 @@
     <Compile Include="Controllers\api\DashBoardController.cs" />
     <Compile Include="Controllers\api\FiscalYearController.cs" />
     <Compile Include="Controllers\api\MenuController.cs" />
+    <Compile Include="Controllers\api\MyProfileController.cs" />
     <Compile Include="Controllers\api\ReportController.cs" />
     <Compile Include="Controllers\api\RoleController.cs" />
     <Compile Include="Controllers\api\TransactionTypeController.cs" />
@@ -249,10 +250,12 @@
     <Content Include="App\Role\ngService\roleService.js" />
     <Content Include="App\Role\ngView\roleMenu.html" />
     <Content Include="App\Role\ngView\roleRoot.html" />
+    <Content Include="App\Users\ngCtrl\updateProfileCtrl.js" />
     <Content Include="App\Users\ngCtrl\userEdit.js" />
     <Content Include="App\Users\ngCtrl\userHomeCtrl.js" />
     <Content Include="App\Users\ngCtrl\userRootCtrl.js" />
     <Content Include="App\Users\ngService\userManagementService.js" />
+    <Content Include="App\Users\ngView\updateProfile.html" />
     <Content Include="App\Users\ngView\userEdit.html" />
     <Content Include="App\Users\ngView\userHome.html" />
     <Content Include="App\Users\ngView\userRoot.html" />

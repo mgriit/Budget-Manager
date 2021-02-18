@@ -15,11 +15,26 @@
         });
     };
 
+    factory.getMyProfile = function () {
+        return $http({
+            method: 'GET',
+            url: '/api/myprofile'
+        });
+    }
+
     factory.save = function (obj) {
         return $http({
             method: 'POST',
             data: obj,
             url: '/api/user'
+        });
+    };
+
+    factory.updateprofile = function (obj) {
+        return $http({
+            method: 'POST',
+            data: obj,
+            url: '/api/myprofile'
         });
     };
 

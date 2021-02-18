@@ -91,7 +91,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
             controller: 'userRootCtrl',
             abstract: true
         })
-        .state('main.user.home ', {
+        .state('main.user.home', {
             url: '/:name',
             templateUrl: 'App/Users/ngView/userHome.html',
             controller: 'userHomeCtrl',
@@ -111,6 +111,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
             url: '/update/:id',
             templateUrl: 'App/Users/ngView/userEdit.html',
             controller: 'userEditCtrl',
+            data: {
+                requireLogin: true
+            }
+        })
+        .state('main.user.myprofile', {
+            url: '/myprofile/',
+            templateUrl: 'App/Users/ngView/updateProfile.html',
+            controller: 'updateProfileCtrl',
             data: {
                 requireLogin: true
             }

@@ -12,6 +12,7 @@ using System.Web.Http;
 
 namespace Budget_Manager.Controllers.api
 {
+    [Authorize]
     public class MenuController : ApiController
     {
         private readonly IMenuRepo _repo;

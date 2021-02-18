@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace Budget_Manager.Controllers.api
 {
+    [Authorize]
     public class ReportController : ApiController
     {
         private readonly IReportRepo _repo;
@@ -19,10 +20,10 @@ namespace Budget_Manager.Controllers.api
         }
 
         [Route("api/report/trans")]
-        public async Task<IHttpActionResult> Get( Int64 fiscalYearId, Int64 codeID=0, int transactionTypeId=0)
+        public async Task<IHttpActionResult> Get( Int64 fiscalYearId, Int64 codeID=0, int transactionTypeId=0,string accountType="All")
         {
             IEnumerable<TransactionFull> trans = null;
-            trans =await _repo.GetTransReport(codeID, fiscalYearId, transactionTypeId);
+            trans =await _repo.GetTransReport(codeID, fiscalYearId, transactionTypeId, accountType);
             return Ok(trans);
         }
 

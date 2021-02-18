@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace Budget_Manager.Controllers.api
 {
+    [Authorize]
     public class FiscalYearController : ApiController
     {
         private readonly IFiscalYearRepo _repo;

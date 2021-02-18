@@ -118,5 +118,26 @@ namespace Budget_Manager.DLL.Implementations
                 }
             }
         }
+
+        public async Task<int> UpdateProfile(User user)
+        {
+            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            {
+                var p = new DynamicParameters();
+                p.Add("@UserId", user.UserId);
+                p.Add("@Username", user.Username);
+                p.Add("@UserFullName", user.UserFullName);
+                p.Add("@Password", user.Password);
+                p.Add("@Designation", user.Designation);
+                p.Add("@DateModified", DateTime.Now);
+                p.Add("@Modifier", user.UserId);
+                p.Add("@flag", DbType.Int32, direction: ParameterDirection.Output);
+                string sql = "dbo.spUser_MyProfile_Update";
+                await cnn.ExecuteAsync(sql, p, commandType: CommandType.StoredProcedure);
+                int retVal = p.Get<int>("flag");
+                return retVal;
+            }
+
+        }
     }
 }
