@@ -20,11 +20,17 @@ namespace Budget_Manager.Controllers.api
         }
 
         [Route("api/report/trans")]
-        public async Task<IHttpActionResult> Get( Int64 fiscalYearId, Int64 codeID=0, int transactionTypeId=0,string accountType="All")
+        public async Task<IHttpActionResult> Get( Int64 fiscalYearId, Int64 codeID=0, int transactionTypeId=0)
         {
             IEnumerable<TransactionFull> trans = null;
-            trans =await _repo.GetTransReport(codeID, fiscalYearId, transactionTypeId, accountType);
-            return Ok(trans);
+            Decimal TotalAllotment;
+            Decimal TotalExpense;
+            Decimal Balance;
+            trans =await _repo.GetTransReport(codeID, fiscalYearId, transactionTypeId);
+            TotalAllotment = trans.Where(a => a.Type == "Credit").Sum(b=>b.TransactionAmount);
+            TotalExpense = trans.Where(a => a.Type == "Debit").Sum(b => b.TransactionAmount);
+            Balance = TotalAllotment - TotalExpense;
+            return Ok(new { Trans = trans, TotalAllotment = TotalAllotment, TotalExpense = TotalExpense ,Balance=Balance});
         }
 
         [Route("api/report/summary")]

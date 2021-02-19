@@ -1,5 +1,5 @@
 ﻿<div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="form-group">
             <div class="input-group">
                 <ui-select allow-clear ng-model="fiscalYear.selected" theme="bootstrap">
@@ -33,7 +33,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="form-group">
             <div class="input-group">
                 <ui-select allow-clear ng-model="transType.selected" theme="bootstrap">
@@ -50,26 +50,8 @@
             </div>
         </div>
     </div>
- 
-    <div class="col-md-4">
-        <div class="form-group">
-            <div class="input-group">
-                <ui-select allow-clear ng-model="accountType.selected" theme="bootstrap">
-                    <ui-select-match placeholder="--Select a Account Type--">{{$select.selected.name}}</ui-select-match>
-                    <ui-select-choices repeat="item in accountTypeShort | filter: $select.search">
-                        <span ng-bind-html="item.name | highlight: $select.search"></span>
-                    </ui-select-choices>
-                </ui-select>
-                <span class="input-group-btn">
-                    <button type="button" ng-click="onResetAccountType()" class="btn btn-default">
-                        <span class="glyphicon glyphicon-trash"></span>
-                    </button>
-                </span>
-            </div>
-        </div>
-    </div>
 
-    <div class="col-md-4">
+    <div class="col-md-2">
         <button type="button" ng-click="getReport()" ng-disabled="!fiscalYear.selected" class="btn btn-success" style="width:100%">
             <span class="glyphicon glyphicon-record"></span> View Report
         </button>
@@ -103,8 +85,8 @@
                     <td>{{pageData.trans.length+1}}</td>
                     <td></td>
                     <td class="text-right"><b>Balance</b></td>
-                    <td class="text-left"><b>{{pageData.balance}}</b></td>
-                    <td></td>
+                    <td class="text-left">({{pageData.totalAllotment}} - {{pageData.totalExpense}})</td>                  
+                    <td><b>{{pageData.balance}}</b></td>
                 </tr>
             </tbody>
         </table>
