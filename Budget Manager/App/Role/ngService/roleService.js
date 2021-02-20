@@ -1,4 +1,4 @@
-﻿app.factory('roleService', ['$http', function ($http) {
+﻿angular.module('app').factory('roleService', ['$http', function ($http) {
     var factory = {};
 
 

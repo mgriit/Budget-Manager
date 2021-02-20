@@ -1,4 +1,4 @@
-﻿app.factory('userManagementService', ['$http', function ($http) {
+﻿angular.module('app').factory('userManagementService', ['$http', function ($http) {
     var factory = {};
 
     factory.getAllUsers = function (obj) {

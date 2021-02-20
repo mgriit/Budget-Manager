@@ -1,3 +1,3 @@
-﻿app.controller("roleRootCtrl", ['$scope', '$state', '$http', function ($scope, $state, $http) {
+﻿angular.module('app').controller("roleRootCtrl", ['$scope', '$state', '$http', function ($scope, $state, $http) {
     
 }]);

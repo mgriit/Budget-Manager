@@ -1,4 +1,4 @@
-﻿app.controller("updateProfileCtrl", ['$scope', '$stateParams', '$state', 'userManagementService', function ($scope, $stateParams, $state, userManagementService) {
+﻿angular.module('app').controller("updateProfileCtrl", ['$scope', '$stateParams', '$state', 'userManagementService', function ($scope, $stateParams, $state, userManagementService) {
     $scope.user = {
         UserId: 0,
         UserFullName: '',

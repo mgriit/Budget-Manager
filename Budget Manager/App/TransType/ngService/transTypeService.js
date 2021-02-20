@@ -1,4 +1,4 @@
-﻿app.factory('transTypeService', ['$http', function ($http) {
+﻿angular.module('app').factory('transTypeService', ['$http', function ($http) {
     var factory = {};
 
     factory.getTransTypeShort = function () {

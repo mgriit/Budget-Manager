@@ -1,4 +1,4 @@
-﻿app.controller("homeCtrl", ['$scope', '$state', '$http', function ($scope, $state, $http) {
+﻿angular.module('app').controller("homeCtrl", ['$scope', '$state', '$http', function ($scope, $state, $http) {
     $scope.changePageTitle('Dashboard');   
     $scope.changePageSubTitle('Dashboard');
     //--------------------CHART_ONE-----------------------------------

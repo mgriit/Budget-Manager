@@ -1,4 +1,4 @@
-﻿app.controller('transactionHomeCtrl', ['$scope', '$stateParams', '$state', '$uibModal', 'transactionService', function ($scope, $stateParams, $state, $uibModal, transactionService) {
+﻿angular.module('app').controller('transactionHomeCtrl', ['$scope', '$stateParams', '$state', '$uibModal', 'transactionService', function ($scope, $stateParams, $state, $uibModal, transactionService) {
     $scope.changePageTitle('Transaction');
     $scope.changePageSubTitle('Transaction / List');
     $scope.pageData = {

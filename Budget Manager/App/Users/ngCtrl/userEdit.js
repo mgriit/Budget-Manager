@@ -1,4 +1,4 @@
-﻿app.controller("userEditCtrl", ['$scope', '$stateParams', '$state', 'userManagementService', function ($scope, $stateParams, $state, userManagementService) {
+﻿angular.module('app').controller("userEditCtrl", ['$scope', '$stateParams', '$state', 'userManagementService', function ($scope, $stateParams, $state, userManagementService) {
     $scope.user = {
         UserId: 0,
         UserFullName: '',

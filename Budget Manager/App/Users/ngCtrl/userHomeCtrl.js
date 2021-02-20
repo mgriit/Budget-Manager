@@ -1,4 +1,4 @@
-﻿app.controller('userHomeCtrl', ['$scope', '$stateParams', '$state', '$uibModal', 'userManagementService', function ($scope, $stateParams, $state, $uibModal, userManagementService) {
+﻿angular.module('app').controller('userHomeCtrl', ['$scope', '$stateParams', '$state', '$uibModal', 'userManagementService', function ($scope, $stateParams, $state, $uibModal, userManagementService) {
     $scope.changePageTitle('User');
     $scope.changePageSubTitle('User / List');
     $scope.pageData = {

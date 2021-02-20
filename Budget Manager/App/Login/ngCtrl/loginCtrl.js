@@ -1,4 +1,4 @@
-﻿app.controller("loginCtrl", ['$scope', '$rootScope', '$state', 'accountService', '$loading', function ($scope, $rootScope, $state, accountService, $loading) {
+﻿angular.module('app').controller("loginCtrl", ['$scope', '$rootScope', '$state', 'accountService', '$loading', function ($scope, $rootScope, $state, accountService, $loading) {
     $scope.account = {
         username: '',
         password: ''

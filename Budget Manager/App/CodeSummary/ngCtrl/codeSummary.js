@@ -1,4 +1,4 @@
-﻿app.controller('codeSummaryCtrl', ['$scope', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$http', 'codeService', 'fiscalYearService', 'transTypeService', function ($scope, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $http, codeService, fiscalYearService, transTypeService) {
+﻿angular.module('app').controller('codeSummaryCtrl', ['$scope', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$http', 'fiscalYearService', function ($scope, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $http, fiscalYearService) {
     $scope.changeMainTitle('Code Summary Report');
     $scope.changePageTitle('Code Summary Report');
     $scope.changePageSubTitle('Report / Summary');

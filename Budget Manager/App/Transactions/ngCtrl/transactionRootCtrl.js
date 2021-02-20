@@ -1,4 +1,4 @@
-﻿app.controller("transactionRootCtrl", ['$scope', 'codeService', 'fiscalYearService', 'transTypeService', function ($scope, codeService, fiscalYearService, transTypeService) {
+﻿angular.module('app').controller("transactionRootCtrl", ['$scope', 'codeService', 'fiscalYearService', 'transTypeService', function ($scope, codeService, fiscalYearService, transTypeService) {
     $scope.codesShort = [];
     $scope.fiscalYearShort = [];
     $scope.transTypeShort = [];

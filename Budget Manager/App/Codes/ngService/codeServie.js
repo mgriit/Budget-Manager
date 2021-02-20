@@ -1,4 +1,4 @@
-﻿app.factory('codeService', ['$http', function ($http) {
+﻿angular.module('app').factory('codeService', ['$http', function ($http) {
     var factory = {};
 
     factory.getAllCodes = function (obj) {

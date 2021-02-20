@@ -51,7 +51,17 @@ namespace Budget_Manager
                    "~/Scripts/angular-datatables.buttons.min.js",
                    "~/Scripts/select.js",
                    "~/Scripts/spin.min.js",
-                   "~/Scripts/angular-loading.js"
+                   "~/Scripts/angular-loading.js",
+                   "~/Scripts/ocLazyLoad.js",
+                   "~/App/app.js",
+                   "~/App/Derectives/widget.js",
+                   "~/App/Derectives/widget-header.js",
+                   "~/App/Derectives/widget-footer.js",
+                   "~/App/Derectives/widget-body.js",
+                   "~/App/Derectives/ng-text-truncate.js",
+                   "~/App/Shared/ngService/accountService.js",
+                   "~/App/masterCtrl.js",
+                   "~/App/Shared/ngCtrl/confirmDeleteModalCtrl.js"
                    ));
 
         

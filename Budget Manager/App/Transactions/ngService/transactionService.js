@@ -1,4 +1,4 @@
-﻿app.factory('transactionService', ['$http', function ($http) {
+﻿angular.module('app').factory('transactionService', ['$http', function ($http) {
     var factory = {};
 
     factory.getAll = function (obj) {

@@ -1,3 +1,3 @@
-﻿app.controller("codeRootCtrl", ['$scope', '$state', '$http', function ($scope, $state, $http) {
+﻿angular.module('app').controller("codeRootCtrl", ['$scope', '$state', '$http', function ($scope, $state, $http) {
     
 }]);

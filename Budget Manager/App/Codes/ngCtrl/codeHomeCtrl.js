@@ -1,4 +1,4 @@
-﻿app.controller('codeHomeCtrl', ['$scope', '$stateParams', '$state', '$uibModal', 'codeService', function ($scope, $stateParams, $state, $uibModal, codeService) {
+﻿angular.module('app').controller('codeHomeCtrl', ['$scope', '$stateParams', '$state', '$uibModal', 'codeService', function ($scope, $stateParams, $state, $uibModal, codeService) {
     $scope.changePageTitle('Code');
     $scope.changePageSubTitle('Code / List');
     $scope.pageData = {

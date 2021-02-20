@@ -1,4 +1,4 @@
-﻿app.controller("mainCtrl", ['$scope', '$cookies', '$state', 'accountService', 'userService', 'mainService', function ($scope, $cookies, $state, accountService, userService, mainService) {
+﻿angular.module('app').controller("mainCtrl", ['$scope', '$cookies', '$state', 'accountService', 'userService', 'mainService', function ($scope, $cookies, $state, accountService, userService, mainService) {
     /**
      * Sidebar Toggle & Cookie Control
      */

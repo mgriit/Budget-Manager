@@ -1,4 +1,4 @@
-﻿app.factory('mainService', ['$http', function ($http) {
+﻿angular.module('app').factory('mainService', ['$http', function ($http) {
     var factory = {};
 
     factory.getPermittedMenu = function () {

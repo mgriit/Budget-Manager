@@ -1,4 +1,4 @@
-﻿app.controller("codeEditCtrl", ['$scope', '$stateParams', '$state', 'codeService', function ($scope, $stateParams, $state, codeService) {
+﻿angular.module('app').controller("codeEditCtrl", ['$scope', '$stateParams', '$state', 'codeService', function ($scope, $stateParams, $state, codeService) {
     $scope.code = {
         CodeId: 0,
         CodeName: '',
@@ -25,8 +25,8 @@
         $scope.changePageSubTitle('Code / Add')
     }
         
-    $scope.save = function (isValid) {
-        if (!isValid) {
+    $scope.save = function (form) {
+        if (form.$invalid) {
             return;
         }
 
@@ -35,7 +35,7 @@
             $scope.mainLoaderStop();
             if ($scope.id)
                 $state.go('main.code.home', { codename: $scope.code.CodeName });
-            $scope.cleardata();
+            $scope.cleardata(form);
             $scope.addAlert({
                 type: 'success',
                 msg: 'Code has been added successfuly'
@@ -49,11 +49,13 @@
         });
     };
 
-    $scope.cleardata = function () {
-        $scope.code.CodeId= 0,
-        $scope.code.CodeName= '',
-        $scope.code.CodeNumber= '',
-        $scope.code.SerialNo= ''    
+    $scope.cleardata = function (f) {
+        $scope.code.CodeId = 0;
+        $scope.code.CodeName = '';
+        $scope.code.CodeNumber = '';
+        $scope.code.SerialNo = '';
+        f.$setUntouched();
+        f.$setPristine();
     }
     //Alert Builer
     $scope.alerts = [];

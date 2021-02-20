@@ -1,13 +1,18 @@
-﻿var app = angular.module('app', ['ui.router', 'ngCookies', 'ngAnimate', 'ngTouch', 'ui.select', 'ngSanitize', 'ui.bootstrap', 'LocalStorageModule', 'chart.js', 'datatables', 'datatables.buttons', 'darthwade.dwLoading']);
+﻿var app = angular.module('app', ['ui.router', 'ngCookies', 'ngAnimate', 'ngTouch', 'ui.select', 'ngSanitize', 'ui.bootstrap', 'LocalStorageModule', 'chart.js', 'datatables', 'datatables.buttons', 'darthwade.dwLoading', 'oc.lazyLoad']);
 
-app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider, $locationProvider) {
+app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider', '$locationProvider', '$ocLazyLoadProvider', function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider, $locationProvider, $ocLazyLoadProvider) {
     $urlMatcherFactoryProvider.caseInsensitive(false);
     $urlRouterProvider.otherwise('/login');
     $stateProvider
         .state('login', {
             url: '/login',
-            templateUrl: 'App/Login/ngView/login.html',
             controller: 'loginCtrl',
+            templateUrl: 'App/Login/ngView/login.html',
+            resolve: { 
+                LazyLoadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load('App/Login/ngCtrl/loginCtrl.js'); // Resolve promise and load before view 
+                }]
+            },
             data: {
                 requireLogin: false
             }
@@ -15,12 +20,28 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
         .state('main', {
             templateUrl: 'App/Main/ngView/main.html',
             controller: 'mainCtrl',
+            resolve: {
+                LazyLoadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        serie: true,
+                        files: [
+                            'App/Main/ngService/mainService.js',
+                            'App/Main/ngCtrl/mainCtrl.js'
+                        ]
+                    }); 
+                }]
+            },
             abstract: true
         })
         .state('main.dashboard', {
             url: '/dashboard',
             templateUrl: 'App/Home/ngView/home.html',
             controller: 'homeCtrl',
+            resolve: {
+                LazyLoadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load('App/Home/ngCtrl/homeCtrl.js'); 
+                }]
+            },
             data: {
                 requireLogin: true
             }
@@ -29,12 +50,28 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
             url: '/code',
             templateUrl: 'App/Codes/ngView/codeRoot.html',
             controller: 'codeRootCtrl',
+            resolve: {
+                LazyLoadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        serie: true,
+                        files: [
+                            'App/Codes/ngService/codeServie.js',
+                            'App/Codes/ngCtrl/codeRootCtrl.js'
+                        ]
+                    }); 
+                }]
+            },
             abstract: true
         })
         .state('main.code.home', {
             url: '/:codename',
             templateUrl: 'App/Codes/ngView/codeHome.html',
             controller: 'codeHomeCtrl',
+            resolve: {
+                LazyLoadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load('App/Codes/ngCtrl/codeHomeCtrl.js'); 
+                }]
+            },
             data: {
                 requireLogin: true
             }
@@ -43,6 +80,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
             url: '/add/',
             templateUrl: 'App/Codes/ngView/codeEdit.html',
             controller: 'codeEditCtrl',
+            resolve: {
+                LazyLoadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load('App/Codes/ngCtrl/codeEdit.js'); 
+                }]
+            },
             data: {
                 requireLogin: true
             }
@@ -51,6 +93,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
             url: '/update/:id',
             templateUrl: 'App/Codes/ngView/codeEdit.html',
             controller: 'codeEditCtrl',
+            resolve: {
+                LazyLoadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load('App/Codes/ngCtrl/codeEdit.js'); 
+                }]
+            },
             data: {
                 requireLogin: true
             }
@@ -59,12 +106,31 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
             url: '/transaction',
             templateUrl: 'App/Transactions/ngView/transactionRoot.html',
             controller: 'transactionRootCtrl',
+            resolve: {
+                LazyLoadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        serie: true,
+                        files: [
+                            'App/Codes/ngService/codeServie.js',
+                            'App/TransType/ngService/transTypeService.js',
+                            'App/FiscalYears/ngService/fiscalYearService.js',
+                            'App/Transactions/ngService/transactionService.js',
+                            'App/Transactions/ngCtrl/transactionRootCtrl.js'
+                        ]
+                    });
+                }]
+            },
             abstract: true
         })
         .state('main.transaction.home', {
             url: '/:transactionId',
             templateUrl: 'App/Transactions/ngView/transactionHome.html',
             controller: 'transactionHomeCtrl',
+            resolve: {
+                LazyLoadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load('App/Transactions/ngCtrl/transactionHomeCtrl.js');
+                }]
+            },
             data: {
                 requireLogin: true
             }
@@ -73,6 +139,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
             url: '/add/',
             templateUrl: 'App/Transactions/ngView/transactionEdit.html',
             controller: 'transactionEditCtrl',
+            resolve: {
+                LazyLoadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load('App/Transactions/ngCtrl/transactionEdit.js');
+                }]
+            },
             data: {
                 requireLogin: true
             }
@@ -81,6 +152,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
             url: '/update/:id',
             templateUrl: 'App/Transactions/ngView/transactionEdit.html',
             controller: 'transactionEditCtrl',
+            resolve: {
+                LazyLoadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load('App/Transactions/ngCtrl/transactionEdit.js');
+                }]
+            },
             data: {
                 requireLogin: true
             }
@@ -89,12 +165,28 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
             url: '/user',
             templateUrl: 'App/Users/ngView/userRoot.html',
             controller: 'userRootCtrl',
+            resolve: {
+                LazyLoadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        serie: true,
+                        files: [
+                            'App/Users/ngService/userManagementService.js',
+                            'App/Users/ngCtrl/userRootCtrl.js'
+                        ]
+                    });
+                }]
+            },          
             abstract: true
         })
         .state('main.user.home', {
             url: '/:name',
             templateUrl: 'App/Users/ngView/userHome.html',
             controller: 'userHomeCtrl',
+            resolve: {
+                LazyLoadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load('App/Users/ngCtrl/userHomeCtrl.js');
+                }]
+            },
             data: {
                 requireLogin: true
             }
@@ -103,6 +195,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
             url: '/add/',
             templateUrl: 'App/Users/ngView/userEdit.html',
             controller: 'userEditCtrl',
+            resolve: {
+                LazyLoadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load('App/Users/ngCtrl/userEdit.js');
+                }]
+            },
             data: {
                 requireLogin: true
             }
@@ -111,6 +208,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
             url: '/update/:id',
             templateUrl: 'App/Users/ngView/userEdit.html',
             controller: 'userEditCtrl',
+            resolve: {
+                LazyLoadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load('App/Users/ngCtrl/userEdit.js');
+                }]
+            },
             data: {
                 requireLogin: true
             }
@@ -119,6 +221,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
             url: '/myprofile/',
             templateUrl: 'App/Users/ngView/updateProfile.html',
             controller: 'updateProfileCtrl',
+            resolve: {
+                LazyLoadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load('App/Users/ngCtrl/updateProfileCtrl.js');
+                }]
+            },
             data: {
                 requireLogin: true
             }
@@ -127,12 +234,28 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
             url: '/role',
             templateUrl: 'App/Role/ngView/roleRoot.html',
             controller: 'roleRootCtrl',
+            resolve: {
+                LazyLoadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        serie: true,
+                        files: [
+                            'App/Role/ngService/roleService.js',
+                            'App/Role/ngCtrl/roleRootCtrl.js'
+                        ]
+                    });
+                }]
+            },   
             abstract: true
         })
         .state('main.role.menu', {
             url: '/menu/',
             templateUrl: 'App/Role/ngView/roleMenu.html',
             controller: 'roleMenuCtrl',
+            resolve: {
+                LazyLoadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load('App/Role/ngCtrl/roleMenuCtrl.js');
+                }]
+            },
             data: {
                 requireLogin: true
             }
@@ -141,6 +264,19 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
             url: '/transreport',
             templateUrl: 'App/TransReport/ngView/transReport.html',
             controller: 'transReportCtrl',
+            resolve: {
+                LazyLoadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        serie: true,
+                        files: [
+                            'App/Codes/ngService/codeServie.js',
+                            'App/TransType/ngService/transTypeService.js',
+                            'App/FiscalYears/ngService/fiscalYearService.js',
+                            'App/TransReport/ngCtrl/transReportCtrl.js'
+                        ]
+                    });
+                }]
+            },
             data: {
                 requireLogin: true
             }
@@ -149,14 +285,17 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
             url: '/codesummary',
             templateUrl: 'App/CodeSummary/ngView/codeSummary.html',
             controller: 'codeSummaryCtrl',
-            data: {
-                requireLogin: true
-            }
-        })
-        .state('main.codeTransfer', {
-            url: '/codetransfer',
-            templateUrl: 'App/CodeTransfer/ngView/codeTransfer.html',
-            controller: 'codeTransferCtrl',
+            resolve: {
+                LazyLoadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        serie: true,
+                        files: [
+                            'App/FiscalYears/ngService/fiscalYearService.js',
+                            'App/CodeSummary/ngCtrl/codeSummary.js'
+                        ]
+                    });
+                }]
+            },
             data: {
                 requireLogin: true
             }
@@ -165,17 +304,16 @@ app.config(['$stateProvider', '$urlRouterProvider', '$urlMatcherFactoryProvider'
             url: '/about',
             templateUrl: 'App/About/ngView/about.html',
             controller: 'aboutCtrl',
+            resolve: {
+                LazyLoadCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load('App/About/ngCtrl/aboutCtrl.js');
+                }]
+            },
             data: {
                 requireLogin: true
             }
         });
-
-    // $locationProvider.html5Mode(true);  
 }]);
-
-//global veriable for store service base path
-//app.constant('serviceBasePath', 'http://budrcc-001-site1.dtempurl.com');
-//app.constant('serviceBasePath', 'http://localhost:50465');
 
 app.run(['$rootScope', '$state', 'userService', function ($rootScope, $state, userService) {
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
@@ -233,5 +371,3 @@ app.config(['$httpProvider', function ($httpProvider) {
     interceptor.$inject = params;
     $httpProvider.interceptors.push(interceptor);
 }]);
-
-

@@ -1,4 +1,4 @@
-﻿app.controller("transactionEditCtrl", ['$scope', '$stateParams', '$state', 'transactionService', function ($scope, $stateParams, $state, transactionService) {
+﻿angular.module('app').controller("transactionEditCtrl", ['$scope', '$stateParams', '$state', 'transactionService', function ($scope, $stateParams, $state, transactionService) {
 
     $scope.trans = {
         TransactionId: 0,

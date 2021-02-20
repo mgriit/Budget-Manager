@@ -1,4 +1,4 @@
-﻿app.controller("transReportCtrl", ['$scope', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$http', 'codeService', 'fiscalYearService', 'transTypeService', function ($scope, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder,$http ,codeService, fiscalYearService, transTypeService) {
+﻿angular.module('app').controller("transReportCtrl", ['$scope', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$http', 'codeService', 'fiscalYearService', 'transTypeService', function ($scope, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder,$http ,codeService, fiscalYearService, transTypeService) {
     $scope.changeMainTitle('Transaction Report');
     $scope.changePageTitle('Transaction Report');
     $scope.changePageSubTitle('Report / Transaction');

@@ -1,4 +1,4 @@
-﻿app.controller("roleMenuCtrl", ['$scope', '$state', '$http', 'roleService', function ($scope, $state, $http, roleService) {
+﻿angular.module('app').controller("roleMenuCtrl", ['$scope', '$state', '$http', 'roleService', function ($scope, $state, $http, roleService) {
     $scope.rolesShort = [];
     $scope.role = {};
     $scope.role.selected = undefined;
